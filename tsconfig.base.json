@@ -7,6 +7,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
@@ -14,7 +15,44 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@containerized/features/docker/ui": [
+        "libs/features/docker/ui/src/index.ts"
+      ],
+      "@containerized/features/docker-containers/data-access": [
+        "libs/features/docker-containers/data-access/src/index.ts"
+      ],
+      "@containerized/features/docker-containers/ui": [
+        "libs/features/docker-containers/ui/src/index.ts"
+      ],
+      "@containerized/features/docker-events/data-access": [
+        "libs/features/docker-events/src/index.ts"
+      ],
+      "@containerized/features/docker-images/data-access": [
+        "libs/features/docker-images/data-access/src/index.ts"
+      ],
+      "@containerized/features/docker-images/ui": [
+        "libs/features/docker-images/ui/src/index.ts"
+      ],
+      "@containerized/features/docker-volumes/data-access": [
+        "libs/features/docker-volumes/data-access/src/index.ts"
+      ],
+      "@containerized/features/docker-volumes/ui": [
+        "libs/features/docker-volumes/ui/src/index.ts"
+      ],
+      "@containerized/features/environments/data-access": [
+        "libs/features/environments/data-access/src/index.ts"
+      ],
+      "@containerized/features/environments/ui": [
+        "libs/features/environments/ui/src/index.ts"
+      ],
+      "@containerized/features/welcome/ui": [
+        "libs/features/welcome/ui/src/index.ts"
+      ],
+      "@containerized/shared": ["libs/shared/src/index.ts"],
+      "@containerized/ui": ["libs/ui/src/index.ts"],
+      "@containerized/utils": ["libs/utils/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,5 +1,5 @@
 {
-  "extends": ["plugin:playwright/recommended", "../../.eslintrc.json"],
+  "extends": ["plugin:cypress/recommended", "../../.eslintrc.json"],
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {
@@ -15,7 +15,7 @@
       "rules": {}
     },
     {
-      "files": ["src/**/*.{ts,js,tsx,jsx}"],
+      "files": ["*.cy.{ts,js,tsx,jsx}", "src/**/*.{ts,js,tsx,jsx}"],
       "rules": {}
     }
   ]

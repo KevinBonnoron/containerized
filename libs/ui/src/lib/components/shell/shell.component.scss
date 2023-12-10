@@ -1,0 +1,21 @@
+mat-toolbar {
+  position: fixed;
+  bottom: 0;
+}
+
+mat-icon {
+  display: flex;
+}
+
+mat-drawer {
+  width: 100px;
+}
+
+mat-drawer-content {
+  padding: 1rem;
+}
+
+mat-list {
+  display: flex;
+  flex-direction: column;
+}

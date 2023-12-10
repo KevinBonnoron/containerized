@@ -1,0 +1,7 @@
+*
+!apps
+!libs
+!nx.json
+!package.json
+!tsconfig.base.json
+!yarn.lock

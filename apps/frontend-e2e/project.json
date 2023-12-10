@@ -5,10 +5,19 @@
   "sourceRoot": "apps/frontend-e2e/src",
   "targets": {
     "e2e": {
-      "executor": "@nx/playwright:playwright",
-      "outputs": ["{workspaceRoot}/dist/.playwright/apps/frontend-e2e"],
+      "executor": "@nx/cypress:cypress",
       "options": {
-        "config": "apps/frontend-e2e/playwright.config.ts"
+        "cypressConfig": "apps/frontend-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "frontend:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "frontend:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "frontend:serve-static"
+        }
       }
     },
     "lint": {
@@ -19,5 +28,6 @@
       }
     }
   },
+  "tags": [],
   "implicitDependencies": ["frontend"]
 }

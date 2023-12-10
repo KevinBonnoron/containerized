@@ -1,10 +1,21 @@
 {
   "root": true,
-  "ignorePatterns": ["**/*"],
-  "plugins": ["@nx"],
+  "ignorePatterns": [
+    "**/*"
+  ],
+  "plugins": [
+    "@nx",
+    "import",
+    "change-detection-strategy"
+  ],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -13,26 +24,98 @@
             "allow": [],
             "depConstraints": [
               {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": ["*"]
+                "sourceTag": "type:apps",
+                "onlyDependOnLibsWithTags": [
+                  "type:libs"
+                ]
+              },
+              {
+                "sourceTag": "type:libs",
+                "onlyDependOnLibsWithTags": [
+                  "type:libs"
+                ]
+              },
+              {
+                "sourceTag": "scope:ui",
+                "onlyDependOnLibsWithTags": [
+                  "scope:data-access",
+                  "scope:utils",
+                  "scope:ui"
+                ]
+              },
+              {
+                "sourceTag": "scope:utils",
+                "onlyDependOnLibsWithTags": [
+                  "scope:utils"
+                ]
+              },
+              {
+                "sourceTag": "scope:data-access",
+                "onlyDependOnLibsWithTags": [
+                  "scope:data-access",
+                  "scope:utils",
+                  "scope:shared"
+                ]
               }
             ]
           }
+        ],
+        "import/order": [
+          "error",
+          {
+            "alphabetize": {
+              "caseInsensitive": true,
+              "order": "asc"
+            },
+            "groups": ["external", "builtin", "internal", "parent", "sibling", "index"],
+            "newlines-between": "always",
+            "pathGroups": [
+              {
+                "group": "external",
+                "pattern": "@containerized/**",
+                "position": "after"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": [
+              "builtin"
+            ]
+          }
+        ],
+        "change-detection-strategy/on-push": [
+          "error"
+        ],
+        "no-unused-vars": [
+          "error"
         ]
       }
     },
     {
-      "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "extends": [
+        "plugin:@nx/typescript"
+      ],
       "rules": {}
     },
     {
-      "files": ["*.js", "*.jsx"],
-      "extends": ["plugin:@nx/javascript"],
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "extends": [
+        "plugin:@nx/javascript"
+      ],
       "rules": {}
     },
     {
-      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
+      "files": [
+        "*.spec.ts",
+        "*.spec.tsx",
+        "*.spec.js",
+        "*.spec.jsx"
+      ],
       "env": {
         "jest": true
       },

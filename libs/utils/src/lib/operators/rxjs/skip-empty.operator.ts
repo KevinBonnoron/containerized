@@ -1,0 +1,5 @@
+import { Observable, filter } from 'rxjs';
+
+import { notNilNorEmpty } from '../monadojs';
+
+export const skipEmpty = <T>(emptyFn = notNilNorEmpty) => (source$: Observable<null | undefined | T>) => source$.pipe(filter(emptyFn) as any) as Observable<T>;
