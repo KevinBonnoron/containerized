@@ -1,0 +1,8 @@
+<mat-form-field>
+  <mat-select [formControl]="formControl" (selectionChange)="selectEnvironment($event.value)">
+    <mat-option value="">None</mat-option>
+    @for (environment of environments(); track environment.id) {
+      <mat-option [value]="environment">{{ environment.name }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>

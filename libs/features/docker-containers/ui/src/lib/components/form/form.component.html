@@ -1,3 +1,42 @@
-<form [formGroup]="formGroup">
-  <button mat-raised-button color="primary">Submit</button>
+<form [formGroup]="formGroup" class="flex flex-col gap-4" (ngSubmit)="onSubmit(formGroup.value)">
+  <div class="flex flex-row gap-4">
+    <mat-form-field class="grow">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" pattern="[^\s]*" />
+    </mat-form-field>
+
+    <button type="button" mat-icon-button (click)="openDockerCommandParserModal()">
+      <rmx-icon name="terminal-box-line" />
+    </button>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Image</mat-label>
+    <input matInput formControlName="image" />
+  </mat-form-field>
+
+  <mat-tab-group>
+    <mat-tab label="Ports">
+      <ng-template matTabContent>
+        <containerized-docker-containers-form-port formControlName="ports" />
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Volumes">
+      <ng-template matTabContent>
+        <containerized-docker-containers-form-volume formControlName="volumes" />
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Environment">
+      <ng-template matTabContent>
+        <containerized-docker-containers-form-environment formControlName="environments" />
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Labels">
+      <ng-template matTabContent>
+        <containerized-docker-containers-form-label formControlName="labels" />
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+
+  <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup.valid">Submit</button>
 </form>

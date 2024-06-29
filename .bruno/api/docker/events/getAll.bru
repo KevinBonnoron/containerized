@@ -1,0 +1,11 @@
+meta {
+  name: getAll
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/docker/{{environment_id}}/events
+  body: none
+  auth: none
+}

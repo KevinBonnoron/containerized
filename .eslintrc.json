@@ -1,21 +1,15 @@
 {
   "root": true,
-  "ignorePatterns": [
-    "**/*"
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": [
-    "@nx",
-    "import",
-    "change-detection-strategy"
-  ],
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx", "prettier", "import", "change-detection-strategy"],
   "overrides": [
     {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "rules": {
         "@nx/enforce-module-boundaries": [
           "error",
@@ -25,29 +19,24 @@
             "depConstraints": [
               {
                 "sourceTag": "type:apps",
-                "onlyDependOnLibsWithTags": [
-                  "type:libs"
-                ]
+                "onlyDependOnLibsWithTags": ["type:libs"]
               },
               {
                 "sourceTag": "type:libs",
-                "onlyDependOnLibsWithTags": [
-                  "type:libs"
-                ]
+                "onlyDependOnLibsWithTags": ["type:libs"]
               },
               {
                 "sourceTag": "scope:ui",
                 "onlyDependOnLibsWithTags": [
                   "scope:data-access",
                   "scope:utils",
-                  "scope:ui"
+                  "scope:ui",
+                  "scope:shared"
                 ]
               },
               {
                 "sourceTag": "scope:utils",
-                "onlyDependOnLibsWithTags": [
-                  "scope:utils"
-                ]
+                "onlyDependOnLibsWithTags": ["scope:utils"]
               },
               {
                 "sourceTag": "scope:data-access",
@@ -56,6 +45,10 @@
                   "scope:utils",
                   "scope:shared"
                 ]
+              },
+              {
+                "sourceTag": "scope:shared",
+                "onlyDependOnLibsWithTags": ["scope:shared"]
               }
             ]
           }
@@ -67,7 +60,14 @@
               "caseInsensitive": true,
               "order": "asc"
             },
-            "groups": ["external", "builtin", "internal", "parent", "sibling", "index"],
+            "groups": [
+              "external",
+              "builtin",
+              "internal",
+              "parent",
+              "sibling",
+              "index"
+            ],
             "newlines-between": "always",
             "pathGroups": [
               {
@@ -76,50 +76,48 @@
                 "position": "after"
               }
             ],
-            "pathGroupsExcludedImportTypes": [
-              "builtin"
-            ]
+            "pathGroupsExcludedImportTypes": ["builtin"]
           }
         ],
-        "change-detection-strategy/on-push": [
-          "error"
-        ],
-        "no-unused-vars": [
-          "error"
+        "change-detection-strategy/on-push": ["error"],
+        "no-unused-vars": ["error"],
+        "@typescript-eslint/consistent-type-imports": [
+          "error",
+          {
+            "prefer": "type-imports"
+          }
         ]
       }
     },
     {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@nx/typescript"
-      ],
-      "rules": {}
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript"],
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nx/javascript"
-      ],
-      "rules": {}
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript"],
+      "rules": {
+        "@typescript-eslint/no-extra-semi": "error",
+        "no-extra-semi": "off"
+      }
     },
     {
-      "files": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx"
-      ],
+      "files": ["*.spec.ts", "*.spec.tsx", "*.spec.js", "*.spec.jsx"],
       "env": {
         "jest": true
       },
       "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@nx/angular-template"],
+      "rules": {
+        "@angular-eslint/template/prefer-self-closing-tags": ["error"]
+      }
     }
   ]
 }

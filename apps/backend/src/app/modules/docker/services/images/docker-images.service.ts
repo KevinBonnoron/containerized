@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { DockerImagesAdapter } from '../../adapters';
-import { PullImageDto } from '../../dtos';
+import type { GetImageQueryDto, PullImageDto } from '../../dtos';
 import { DockerService } from '../docker/docker.service';
 
 @Injectable()
@@ -10,9 +10,18 @@ export class DockerImagesService {
     private readonly dockerService: DockerService
   ) {}
 
-  async findAll() {
-    const imageInfos = await this.dockerService.listImages();
+  async findAll(query: GetImageQueryDto = {}) {
+    const imageInfos = await this.dockerService.listImages({ all: true, filters: query });
     return imageInfos.map(DockerImagesAdapter.toDto);
+  }
+
+  async remove(id: string) {
+    const image = this.dockerService.getImage(id);
+    if (image === undefined) {
+      throw new NotFoundException();
+    }
+
+    return await image.remove({ force: true });
   }
 
   async pull({ image, tag }: PullImageDto) {

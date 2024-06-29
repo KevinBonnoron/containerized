@@ -1,0 +1,22 @@
+meta {
+  name: getAll
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/docker/{{environment_id}}/containers
+  body: none
+  auth: none
+}
+
+query {
+  ~health: 
+  ~id: fa3b978f553b0fe30ff654f5b23ef2d2ee1fdc399b0acb169c269d341deea9c2
+  ~name: priceless_aryabhata,vigilant_lumiere
+  ~status: created,exited
+}
+
+docs {
+  This api returns all containers
+}

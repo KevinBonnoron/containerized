@@ -1,16 +1,20 @@
-import { importProvidersFrom } from '@angular/core';
-import { Routes } from '@angular/router';
+import type { Routes } from '@angular/router';
 
-import { FeatureDockerVolumesDataAccessModule } from '@containerized/features/docker-volumes/data-access';
+import { dockerVolumeRouteResolver, provideDockerVolumes } from '@containerized/features/docker-volumes/data-access';
+import { DockerVolumesCreateComponent, DockerVolumesEditComponent } from './components';
 
 const providers = [
-  importProvidersFrom(
-    FeatureDockerVolumesDataAccessModule,
-  )
-]
+  provideDockerVolumes(),
+];
 
-export const routes: Routes = [
+export const dockerVolumesRoutes: Routes = [
   { path: '', providers, children: [
-    { path: '', pathMatch: 'full', loadComponent: () => import('./components').then((m) => m.DockerVolumeHomeComponent) },
+    { path: 'view', loadComponent: () => import('./components').then((m) => m.DockerVolumesViewComponent), children: [
+      { path: 'create', loadComponent: () => import('./components').then((m) => m.DockerVolumesDialogComponent), data: { title: 'volume.create.title', dialogComponent: DockerVolumesCreateComponent } },
+      { path: ':id', resolve: { dockerVolume: dockerVolumeRouteResolver }, children: [
+        { path: 'edit', loadComponent: () => import('./components').then((m) => m.DockerVolumesDialogComponent),  data: { title: 'container.edit.title', dialogComponent: DockerVolumesEditComponent } },
+      ] },
+    ] },
+    { path: '', pathMatch: 'full', redirectTo: 'view' },
   ] }
 ];

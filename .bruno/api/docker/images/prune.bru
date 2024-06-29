@@ -1,0 +1,17 @@
+meta {
+  name: prune
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/docker/{{environment_id}}/images/prune
+  body: none
+  auth: none
+}
+
+body:json {
+  {
+    "image": "hello-world"
+  }
+}

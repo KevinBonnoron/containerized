@@ -1,9 +1,11 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 
-import { CreateEnvironmentDto } from '../../dtos';
+import { ApiTags } from '@nestjs/swagger';
+import { CreateEnvironmentDto, UpdateEnvironmentDto } from '../../dtos';
 import { EnvironmentsService } from '../../services';
 
 @Controller('/environments')
+@ApiTags('environment')
 export class EnvironmentsController {
   constructor(
     private readonly environmentsService: EnvironmentsService
@@ -22,5 +24,15 @@ export class EnvironmentsController {
   @Post()
   create(@Body() createEnvironmentDto: CreateEnvironmentDto) {
     return this.environmentsService.create(createEnvironmentDto);
+  }
+
+  @Put('/:id')
+  update(@Param('id') id: number, @Body() updateEnvironmentDto: UpdateEnvironmentDto) {
+    return this.environmentsService.update(id, updateEnvironmentDto);
+  }
+
+  @Delete('/:id')
+  remove(@Param('id') id: number) {
+    return this.environmentsService.remove(id);
   }
 }

@@ -1,8 +1,8 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { ContainerInfo } from 'dockerode';
+import type { ContainerInfo } from 'dockerode';
 
-import { DockerContainerDto, DockerContainerDtos } from '@containerized/shared';
+import type { DockerContainerDto, DockerContainerDtos } from '@containerized/shared';
 
 import { DockerService } from '../docker/docker.service';
 
@@ -35,7 +35,7 @@ describe('DockerContainersService', () => {
         Names: ['/nginx'],
         Image: 'nginx',
         ImageID: 'ha256:a6bd71f48f6839d9faae1f29d3babef831e76bc213107682c5cc80f0cbb30866',
-        Command: "/docker-entrypoint.sh nginx -g 'daemon off;'",
+        Command: `/docker-entrypoint.sh nginx -g 'daemon off;'`,
         Created: 1577836800,
         Ports: [],
         Labels: {},
@@ -68,7 +68,7 @@ describe('DockerContainersService', () => {
         Names: ['/nginx'],
         Image: 'nginx',
         ImageID: 'ha256:a6bd71f48f6839d9faae1f29d3babef831e76bc213107682c5cc80f0cbb30866',
-        Command: "/docker-entrypoint.sh nginx -g 'daemon off;'",
+        Command: `/docker-entrypoint.sh nginx -g 'daemon off;'`,
         Created: 1577836800,
         Ports: [],
         Labels: {},

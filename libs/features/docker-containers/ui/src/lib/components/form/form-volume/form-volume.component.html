@@ -1,0 +1,39 @@
+<form class="flex flex-col gap-4 mt-4">
+  @for(control of formArray.controls; track control; let index = $index) {
+    <div [formGroup]="control" class="flex items-center gap-2">
+      <mat-form-field class="grow">
+        <select-wrapper formControlName="type" [values]="[{ label: 'Volume', value: 'named' }, { label: 'Bind', value: 'bind' }]">
+          @if (isBindControl(control)) {
+            <input matInput formControlName="source" />
+          } @else {
+            <mat-select formControlName="source">
+              @for (volume of volumes(); track volume.name) {
+                <mat-option [value]="volume.name">{{ volume.name }}</mat-option>
+              }
+            </mat-select>
+          }
+        </select-wrapper>
+      </mat-form-field>
+
+      <div>-></div>
+
+      <mat-form-field class="grow">
+        <mat-label>Container</mat-label>
+        <input matInput formControlName="destination" />
+      </mat-form-field>
+
+      <mat-button-toggle-group formControlName="rw" [hideSingleSelectionIndicator]="true">
+        <mat-button-toggle [value]="false">ReadOnly</mat-button-toggle>
+      </mat-button-toggle-group>
+
+      <containerized-confirm-button class="text-red-700" icon="delete-bin-line" [bypassConfirmation]="!control.valid"
+        (confirmed)="removeElement(index)">
+        <rmx-icon name="delete-bin-line" />
+      </containerized-confirm-button>
+    </div>
+  }
+
+  <div>
+    <button type="button" mat-raised-button color="primary" (click)="addElement()">+ Add a volume</button>
+  </div>
+</form>

@@ -1,8 +1,8 @@
 import { Test } from '@nestjs/testing';
 
-import { DockerVolumeDtos } from '@containerized/shared';
+import type { DockerVolumeDtos } from '@containerized/shared';
 
-import { VolumeInspectInfo } from '../../types';
+import type { VolumeInspectInfo } from '../../types';
 import { DockerService } from '../docker/docker.service';
 
 import { DockerVolumesService } from './docker-volumes.service';
@@ -41,13 +41,13 @@ describe('DockerVolumesService', () => {
       }];
 
       const dockerVolumeDtos: DockerVolumeDtos = [{
-        name: "90166baccb5ffc95206738a61b1dabc8ffc68ab0ccab840fcb7c18a141626a97",
+        name: '90166baccb5ffc95206738a61b1dabc8ffc68ab0ccab840fcb7c18a141626a97',
         labels: {
-          "com.docker.volume.anonymous": ""
+          'com.docker.volume.anonymous': ''
         },
-        driver: "local",
-        mountPoint: "/var/lib/docker/volumes/90166baccb5ffc95206738a61b1dabc8ffc68ab0ccab840fcb7c18a141626a97/_data",
-        scope: "local"
+        driver: 'local',
+        mountPoint: '/var/lib/docker/volumes/90166baccb5ffc95206738a61b1dabc8ffc68ab0ccab840fcb7c18a141626a97/_data',
+        scope: 'local'
       }];
 
       const listImagesSpy = jest.spyOn(dockerService, 'listVolumes').mockReturnValue(Promise.resolve({ Volumes: volumeInspectInfos, Warnings: null }));

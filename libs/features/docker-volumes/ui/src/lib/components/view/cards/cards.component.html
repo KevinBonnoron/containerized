@@ -1,0 +1,25 @@
+<div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+  @for (dockerVolume of elements(); track dockerVolume.name) {
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title class="grow">{{ dockerVolume.name }}</mat-card-title>
+        </mat-card-title-group>
+      </mat-card-header>
+
+      <mat-card-content class="h-full"></mat-card-content>
+
+      <mat-card-actions align="end">
+        <div class="grow"></div>
+
+        <button mat-icon-button (click)="editVolume(dockerVolume)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <containerized-confirm-button (confirmed)="removeVolume(dockerVolume)">
+          <rmx-icon name="delete-bin-line" />
+        </containerized-confirm-button>
+      </mat-card-actions>
+    </mat-card>
+  }
+</div>

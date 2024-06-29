@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 import { DockerVolumesAdapter } from '../../adapters';
-import { CreateVolumeDto } from '../../dtos';
-import { VolumeInspectInfo } from '../../types';
+import type { CreateVolumeDto } from '../../dtos';
+import type { VolumeInspectInfo } from '../../types';
 import { DockerService } from '../docker/docker.service';
 
 @Injectable()
@@ -17,8 +17,7 @@ export class DockerVolumesService {
   }
 
   async findOneByName(name: string) {
-    const volume = this.dockerService.getVolume(name);
-    const volumeInspectInfo = await volume.inspect() as VolumeInspectInfo;
+    const volumeInspectInfo = await this.inspect(name);
     return DockerVolumesAdapter.toDto(volumeInspectInfo);
   }
 
@@ -28,12 +27,17 @@ export class DockerVolumesService {
     return DockerVolumesAdapter.toDto(volumeInspectInfo);
   }
 
-  delete(name: string) {
+  remove(name: string) {
     const volume = this.dockerService.getVolume(name);
     return volume.remove();
   }
 
   prune() {
     return this.dockerService.pruneVolumes();
+  }
+
+  inspect(name: string) {
+    const volume = this.dockerService.getVolume(name);
+    return volume.inspect() as Promise<VolumeInspectInfo>;
   }
 }

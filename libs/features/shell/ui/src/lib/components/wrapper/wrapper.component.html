@@ -1,0 +1,48 @@
+@switch (breakpoint()) {
+  @case ('desktop') {
+    <mat-drawer-container fullscreen>
+      <mat-drawer mode="side" opened="true">
+        <ng-container *ngTemplateOutlet="environmentSelector" />
+
+        <mat-list>
+          <containerized-shell-menu [menuItems]="menuItems()" class="flex flex-col items-center gap-10" />
+        </mat-list>
+      </mat-drawer>
+  
+      <div class="m-3">
+        <ng-container *ngTemplateOutlet="content" />
+      </div>
+    </mat-drawer-container>
+  }
+
+  @case ('mobile') {
+    <div class="m-3">
+      <div class="flex h-20 gap-2 items-center">
+        <button mat-icon-button (click)="back()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <h1 class="text-2xl">{{ title() }}</h1>
+      </div>
+
+      <ng-container *ngTemplateOutlet="environmentSelector" />
+    
+      <div class="pt-4 pb-4">
+        <ng-container *ngTemplateOutlet="content" />
+      </div>
+    </div>
+    
+    
+    <mat-toolbar>
+      <containerized-shell-menu [menuItems]="menuItems()" class="flex flex-row justify-evenly w-full gap-10" />
+    </mat-toolbar>
+  }
+}
+
+<ng-template #environmentSelector>
+  <containerized-environment-selector />
+</ng-template>
+
+<ng-template #content>
+  <ng-content />
+</ng-template>

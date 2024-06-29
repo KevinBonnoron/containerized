@@ -1,0 +1,36 @@
+
+::ng-deep .mat-mdc-form-field-infix:has(select-wrapper) {
+  padding: 0 !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper:has(select-wrapper) {
+  padding: 0 !important;
+}
+
+:host {
+  display: flex;
+  flex-direction: row;
+  
+  & > ::ng-deep * {
+    padding-top: var(--mat-form-field-container-vertical-padding);
+    padding-bottom: var(--mat-form-field-container-vertical-padding);
+
+    // TODO should be applyed only on .mdc-text-field--outlined 
+    padding-left: max(16px, var(--mdc-outlined-text-field-container-shape));
+    padding-right: max(16px, var(--mdc-outlined-text-field-container-shape));
+  }
+}
+
+mat-select.main-select {
+  background-color: #e5e7eb;
+  width: auto !important;
+
+  & ::ng-deep .mat-mdc-select-value {
+    margin: 0 0.5rem 0;
+  }
+}
+
+::ng-deep mat-select:not(.main-select), ::ng-deep input {
+  flex-grow: 1;
+  width: 100%;
+}

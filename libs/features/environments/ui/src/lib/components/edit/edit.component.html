@@ -1,0 +1,5 @@
+<mat-dialog-content>
+  @if (environment(); as environment) {
+    <containerized-environments-form [environment]="environment" (submitted)="onSubmitted($event)" />
+  }
+</mat-dialog-content>

@@ -1,29 +1,36 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 
-import { DockerContainersEntity } from '../../+state/docker-containers.models';
+import { DockerRemoteService } from '@containerized/data-access';
+import { DockerContainerDto, DockerContainerDtos } from '@containerized/shared';
 
 @Injectable()
-export class DockerContainersService {
-  private readonly httpClient = inject(HttpClient);
-
-  loadAll(environmentId: number) {
-    return this.httpClient.get<DockerContainersEntity[]>(`http://localhost:3000/api/docker/${environmentId}/containers`);
+export class DockerContainersService extends DockerRemoteService {
+  getAll() {
+    return this.get<DockerContainerDtos>(`/containers`);
   }
 
-  create(environmentId: number, dockerContainer: Omit<DockerContainersEntity, 'id' | 'created' | 'status'>) {
-    return this.httpClient.post<DockerContainersEntity>(`http://localhost:3000/api/docker/${environmentId}/containers`, dockerContainer);
+  create(dockerContainer: Omit<DockerContainerDto, 'id' | 'created' | 'status'>) {
+    return this.post<DockerContainerDto>(`/containers`, dockerContainer);
   }
 
-  start(environmentId: number, id: DockerContainersEntity['id']) {
-    return this.httpClient.post(`http://localhost:3000/api/docker/${environmentId}/containers/${id}/start`, null);
+  update(id: DockerContainerDto['id'], dockerContainer: DockerContainerDto) {
+    // TODO this method does not exist on backend
+    return this.put<DockerContainerDto>(`/containers/${id}`, dockerContainer);
   }
 
-  stop(environmentId: number, id: DockerContainersEntity['id']) {
-    return this.httpClient.post(`http://localhost:3000/api/docker/${environmentId}/containers/${id}/stop`, null);
+  remove(dockerContainer: DockerContainerDto) {
+    return this.delete<string>(`/containers/${dockerContainer.id}`);
   }
 
-  delete(environmentId: number, id: DockerContainersEntity['id']) {
-    return this.httpClient.delete<DockerContainersEntity>(`http://localhost:3000/api/docker/${environmentId}/containers/${id}`);
+  start(id: DockerContainerDto['id']) {
+    return this.post(`/containers/${id}/start`, null);
+  }
+
+  stop(id: DockerContainerDto['id']) {
+    return this.post(`/containers/${id}/stop`, null);
+  }
+
+  run(dockerContainer: Omit<DockerContainerDto, 'id' | 'created' | 'status'>) {
+    return this.post<DockerContainerDto>(`/containers/run`, dockerContainer);
   }
 }

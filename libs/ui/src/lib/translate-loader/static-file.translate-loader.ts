@@ -1,4 +1,4 @@
-import { TranslateLoader } from '@ngx-translate/core';
+import type { TranslateLoader } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
 export class StaticFileTranslateLoader implements TranslateLoader {

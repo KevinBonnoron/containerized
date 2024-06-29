@@ -1,7 +1,4 @@
-*
-!apps
-!libs
-!nx.json
-!package.json
-!tsconfig.base.json
-!yarn.lock
+node_modules
+dist
+tmp
+.vscode

@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>{{ 'container.docker-command-parser-dialog.title' | translate }}</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <textarea matInput [(ngModel)]="content"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>{{ 'container.docker-command-parser-dialog.actions.cancel' | translate }}</button>
+  <button mat-button [mat-dialog-close]="dockerCommand()" [disabled]="!valid()">{{ 'container.docker-command-parser-dialog.actions.submit' | translate }}</button>
+</mat-dialog-actions>

@@ -1,6 +1,6 @@
 {
-  "home": {
-    "welcome": {
+  "environment": {
+    "home": {
       "title": "Bienvenue"
     }
   }

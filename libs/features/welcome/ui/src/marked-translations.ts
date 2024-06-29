@@ -1,3 +1,3 @@
 import { marker } from '@colsen1991/ngx-translate-extract-marker';
 
-marker('home.welcome.title');
+marker('welcome.home.title');

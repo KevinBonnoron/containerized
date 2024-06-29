@@ -1,0 +1,4 @@
+<!-- <button (click)="switchTheme()">Switch</button> -->
+@for (menuItem of menuItems(); track menuItem.label) {
+  <containerized-shell-menu-item [menuItem]="menuItem" />
+}

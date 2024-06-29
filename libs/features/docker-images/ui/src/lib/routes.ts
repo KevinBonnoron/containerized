@@ -1,16 +1,19 @@
-import { importProvidersFrom } from '@angular/core';
-import { Routes } from '@angular/router';
+import type { Routes } from '@angular/router';
 
-import { FeatureDockerImagesDataAccessModule } from '@containerized/features/docker-images/data-access';
+import { provideDockerImages } from '@containerized/features/docker-images/data-access';
+import { provideChildTranslate } from '@containerized/ui';
+
+import * as en from '../assets/i18n/en.json';
+import * as fr from '../assets/i18n/fr.json';
 
 const providers = [
-  importProvidersFrom(
-    FeatureDockerImagesDataAccessModule,
-  )
-]
+  provideDockerImages(),
+  provideChildTranslate({ fr, en }),
+];
 
-export const routes: Routes = [
+export const dockerImagesRoutes: Routes = [
   { path: '', providers, children: [
-    { path: '', pathMatch: 'full', loadComponent: () => import('./components').then((m) => m.DockerImageHomeComponent) },
+    { path: 'view', loadComponent: () => import('./components').then((m) => m.DockerImagesViewComponent), data: { title: 'image.view.title' } },
+    { path: '', pathMatch: 'full', redirectTo: 'view' },
   ] }
 ];

@@ -1,24 +1,16 @@
 import { inject } from '@angular/core';
-import { ActivatedRouteSnapshot, ResolveFn, Router } from '@angular/router';
-import { EMPTY, catchError, timeout } from 'rxjs';
+import { RedirectCommand, Router, type ActivatedRouteSnapshot, type ResolveFn } from '@angular/router';
+import { EnvironmentsStore } from '@containerized/features/environments/data-access';
+import { EnvironmentDto } from '@containerized/shared';
 
-import { EnvironmentsFacade } from '../+state/environments.facade';
-import { EnvironmentsEntity } from '../+state/environments.models';
-
-export const environmentRouteResolver: ResolveFn<EnvironmentsEntity> = (activatedRouteSnapshot: ActivatedRouteSnapshot) => {
+export const environmentRouteResolver: ResolveFn<EnvironmentDto> = (activatedRouteSnapshot: ActivatedRouteSnapshot) => {
+  const environmentsStore = inject(EnvironmentsStore);
   const router = inject(Router);
-  const environmentsFacade = inject(EnvironmentsFacade);
 
   const id = activatedRouteSnapshot.paramMap.get('id');
   if (id) {
-    environmentsFacade.setSelectedId(parseInt(id));
+    environmentsStore.selectId(id);
   }
 
-  return environmentsFacade.selected$.pipe(
-    timeout(10),
-    catchError(() => {
-      router.navigate(['/']);
-      return EMPTY;
-    })
-  );
+  return environmentsStore.selected() ?? new RedirectCommand(router.createUrlTree(['home']));
 }

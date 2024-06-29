@@ -1,0 +1,19 @@
+<div class="flex pb-4">
+  <div class="grow">
+    @if (currentLayout() === 'table') {
+      <button mat-icon-button (click)="setLayout('cards')">
+        <rmx-icon name="layout-grid-line" />
+      </button>
+    }
+  
+    @if (currentLayout() === 'cards') {
+      <button mat-icon-button (click)="setLayout('table')">
+        <rmx-icon name="table-line" />
+      </button>
+    }
+  </div>
+
+  <button mat-flat-button routerLink="./create">+ Create</button>
+</div>
+
+<ngx-data-layout-content />

@@ -1,5 +1,5 @@
 import { NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, HostListener, Input, Output, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostListener, inject, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -13,11 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 export class ConfirmButtonComponent {
   private readonly elementRef = inject(ElementRef);
 
-  @Input()
-  icon!: string;
-
-  @Output()
-  confirmed = new EventEmitter();
+  readonly bypassConfirmation = input(false);
+  readonly confirmed = output();
 
   clicked = false;
 
@@ -29,7 +26,7 @@ export class ConfirmButtonComponent {
   }
 
   onClick() {
-    if (this.clicked) {
+    if (this.clicked || this.bypassConfirmation()) {
       this.confirmed.emit();
     }
 

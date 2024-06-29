@@ -1,4 +1,5 @@
-import { Observable, filter } from 'rxjs';
+import type { Observable} from 'rxjs';
+import { filter } from 'rxjs';
 
 import { notNilNorEmpty } from '../monadojs';
 

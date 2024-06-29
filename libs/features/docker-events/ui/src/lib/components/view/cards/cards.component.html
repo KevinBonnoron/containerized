@@ -1,0 +1,11 @@
+<div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+  @for (dockerEvent of elements(); track dockerEvent.type) {
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title class="grow">{{ dockerEvent.type }}</mat-card-title>
+        </mat-card-title-group>
+      </mat-card-header>
+    </mat-card>
+  }
+</div>

@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 
-import { DockerImageDtos } from '@containerized/shared';
+import type { DockerImageDtos } from '@containerized/shared';
 
 import { DockerImagesService } from '../../services';
 
@@ -32,9 +32,10 @@ describe('DockerImagesController', () => {
   describe('getAll', () => {
     it('should return images', () => {
       const dockerImageDtos: DockerImageDtos = [{
-        id: "sha256:a6bd71f48f6839d9faae1f29d3babef831e76bc213107682c5cc80f0cbb30866",
-        labels: { maintainer: "NGINX Docker Maintainers <docker-maint@nginx.com>" },
-        tags: ["nginx:latest"]
+        id: 'sha256:a6bd71f48f6839d9faae1f29d3babef831e76bc213107682c5cc80f0cbb30866',
+        labels: { maintainer: 'NGINX Docker Maintainers <docker-maint@nginx.com>' },
+        tags: ['nginx:latest'],
+        used: false,
       }];
 
       const findAllSpy = jest.spyOn(dockerImagesService, 'findAll').mockReturnValue(Promise.resolve(dockerImageDtos));

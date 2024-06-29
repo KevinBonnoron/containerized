@@ -3,16 +3,20 @@ interface Device {
   target: string;
 }
 
+type ReadWriteOptions = 'rw' | 'ro';
+type ZOptions = 'z' | 'Z';
+
 interface Volume {
-  type: 'bind' | 'volume';
+  type: 'named' | 'bind';
   host: string;
   container: string;
-  options?: ('rw' | 'ro' | 'z' | 'Z')[]; // TODO we should ne be able to have at the same time ro & rw (same for z & Z)
+  options?: [ReadWriteOptions] | [ZOptions] | [ReadWriteOptions, ZOptions] | [ZOptions, ReadWriteOptions]; // TODO find a better type
 }
 
 interface Publish {
-  source: string;
-  target: string;
+  ip?: string;
+  host?: number;
+  container: number;
   protocol: 'tcp' | 'udp' | string;
 }
 

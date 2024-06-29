@@ -1,0 +1,38 @@
+{
+  "name": "db",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/db/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "generate": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma generate --schema libs/db/src/prisma/schema.prisma"
+      }
+    },
+    "push": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma db push --schema libs/db/src/prisma/schema.prisma"
+      }
+    },
+
+    "migrate": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx prisma migrate dev --name init --schema libs/db/src/prisma/schema.prisma"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/db/jest.config.ts"
+      }
+    }
+  }
+}

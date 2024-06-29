@@ -1,7 +1,7 @@
 import { WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
-import { Server } from 'socket.io';
+import type { Server } from 'socket.io';
 
-import { DockerEventDto } from '@containerized/shared';
+import type { DockerEventDto } from '@containerized/shared';
 
 @WebSocketGateway({ cors: { origin: '*' } })
 export class DockerGateway {

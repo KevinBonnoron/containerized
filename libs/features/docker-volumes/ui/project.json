@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/features/docker-volumes/ui/src",
   "prefix": "containerized",
-  "tags": ["type:libs", "scope:ui", "feature:docker-volume"],
+  "tags": ["type:libs", "scope:ui", "feature:docker-volumes"],
   "projectType": "library",
   "targets": {
     "test": {

@@ -1,0 +1,17 @@
+meta {
+  name: create
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/docker/{{environment_id}}/containers
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "image": "hello-world"
+  }
+}
