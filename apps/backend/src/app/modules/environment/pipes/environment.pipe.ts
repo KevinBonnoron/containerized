@@ -1,6 +1,6 @@
-import { PipeTransform } from '@nestjs/common';
+import type { PipeTransform } from '@nestjs/common';
 
-import { EnvironmentsService } from '../services';
+import type { EnvironmentsService } from '../services';
 
 export class EnvironmentPipe implements PipeTransform {
   constructor(

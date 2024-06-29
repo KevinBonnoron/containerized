@@ -1,0 +1,18 @@
+meta {
+  name: update
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{base_url}}/environments/2
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "host",
+    "url": "unix:/var/run/host.docker.sock"
+  }
+}

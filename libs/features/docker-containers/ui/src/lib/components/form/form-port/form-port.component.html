@@ -1,0 +1,36 @@
+<form class="flex flex-col gap-4 mt-4">
+  @for(control of formArray.controls; track control; let index = $index) {
+    <div [formGroup]="control" class="flex items-center gap-2">
+      <mat-form-field class="grow">
+        <mat-label>Host ip</mat-label>
+        <input type="number" matInput formControlName="ip" />
+      </mat-form-field>
+
+      <mat-form-field class="grow">
+        <mat-label>Host port</mat-label>
+        <input type="number" matInput formControlName="host" />
+      </mat-form-field>
+
+      <div>-></div>
+
+      <mat-form-field class="grow">
+        <mat-label>Container</mat-label>
+        <input type="number" matInput formControlName="container" />
+      </mat-form-field>
+
+      <mat-button-toggle-group formControlName="protocol" [hideSingleSelectionIndicator]="true">
+        <mat-button-toggle value="tcp">Tcp</mat-button-toggle>
+        <mat-button-toggle value="udp">Udp</mat-button-toggle>
+      </mat-button-toggle-group>
+      
+      <containerized-confirm-button class="text-red-700" icon="delete-bin-line" [bypassConfirmation]="!control.valid"
+        (confirmed)="removeElement(index)">
+        <rmx-icon name="delete-bin-line" />
+      </containerized-confirm-button>
+    </div>
+  }
+
+  <div>
+    <button type="button" mat-raised-button color="primary" (click)="addElement()">+ Add a published port</button>
+  </div>
+</form>

@@ -1,25 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 
-import { CreateEnvironmentDto } from '../../dtos';
-import { EnvironmentEntity } from '../../entities';
+import { PrismaService } from '@containerized/db';
+import { Environment } from '@prisma/client';
+import type { CreateEnvironmentDto, UpdateEnvironmentDto } from '../../dtos';
 
 @Injectable()
 export class EnvironmentsService {
   constructor(
-    @InjectRepository(EnvironmentEntity) private readonly entityRepository: Repository<EnvironmentEntity>
+    private readonly prismaService: PrismaService
   ) { }
 
   findAll() {
-    return this.entityRepository.find();
+    return this.prismaService.environment.findMany();
   }
 
-  findOneById(id: EnvironmentEntity['id']) {
-    return this.entityRepository.findOneBy({ id });
+  findOneById(id: Environment['id']) {
+    return this.prismaService.environment.findFirstOrThrow({ where: { id } });
   }
 
   create({ name, url }: CreateEnvironmentDto) {
-    return this.entityRepository.save(this.entityRepository.create({ name, url }));
+    return this.prismaService.environment.create({ data: { name, url } });
+  }
+
+  update(id: number, { name, url }: UpdateEnvironmentDto) {
+    return this.prismaService.environment.update({ where: { id }, data: { name, url } });
+  }
+
+  remove(id: Environment['id']) {
+    return this.prismaService.environment.delete({ where: { id } });
   }
 }

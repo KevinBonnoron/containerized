@@ -1,0 +1,17 @@
+meta {
+  name: rename
+  type: http
+  seq: 11
+}
+
+post {
+  url: {{base_url}}/docker/{{environment_id}}/containers/df5e21c8078bbe78f0a03079ed292a7245521b6d61275b6ec41f121d93482e2e/rename
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name": "hello-world"
+  }
+}

@@ -1,0 +1,17 @@
+meta {
+  name: inspect
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/docker/{{environment_id}}/containers/d366d9c1dac3702a1c3745dbf1b24328865b3d38fc01a902aa6b6dd328d82ed3/logs
+  body: none
+  auth: none
+}
+
+body:json {
+  {
+    "image": "hello-world"
+  }
+}

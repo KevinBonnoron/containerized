@@ -9,11 +9,12 @@ import {
   inject,
   makeEnvironmentProviders
 } from '@angular/core';
+import type {
+  TranslateModuleConfig} from '@ngx-translate/core';
 import {
   TranslateCompiler,
   TranslateLoader,
   TranslateModule,
-  TranslateModuleConfig,
   TranslateService,
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -36,44 +37,26 @@ const environmentInitializer = () => {
   registerLocaleData(localeFr);
   registerLocaleData(localEn);
   const translateService = inject(TranslateService);
-  translateService.use(translateService.getBrowserLang() as string);
+  translateService.use(translateService.getBrowserLang()!);
 };
 
 export const provideRootTranslate = () =>
   makeEnvironmentProviders([
-    {
-      provide: ENVIRONMENT_INITIALIZER,
-      useValue: environmentInitializer,
-      multi: true,
-    },
-    {
-      provide: LOCALE_ID,
-      useFactory: (translateService: TranslateService) =>
-        translateService.currentLang,
-      deps: [TranslateService],
-    },
+    { provide: ENVIRONMENT_INITIALIZER, useValue: environmentInitializer, multi: true },
+    { provide: LOCALE_ID, useFactory: (translateService: TranslateService) => translateService.currentLang, deps: [TranslateService] },
     importProvidersFrom(
       TranslateModule.forRoot({
         ...commonTranslateModuleConfig,
-        loader: {
-          provide: TranslateLoader,
-          useFactory: (httpClient: HttpClient) =>
-            new TranslateHttpLoader(httpClient),
-          deps: [HttpClient],
-        },
+        loader: { provide: TranslateLoader, useFactory: (httpClient: HttpClient) => new TranslateHttpLoader(httpClient), deps: [HttpClient] },
       })
     ),
   ]);
 
-export const provideChildTranslate = (files: Record<string, object>) =>
-  makeEnvironmentProviders([
-    importProvidersFrom(
-      TranslateModule.forChild({
-        ...commonTranslateModuleConfig,
-        loader: {
-          provide: TranslateLoader,
-          useFactory: () => new StaticFileTranslateLoader(files),
-        },
-      })
-    ),
-  ]);
+export const provideChildTranslate = (files: Record<string, object>) => makeEnvironmentProviders([
+  importProvidersFrom(
+    TranslateModule.forChild({
+      ...commonTranslateModuleConfig,
+      loader: { provide: TranslateLoader, useFactory: () => new StaticFileTranslateLoader(files) },
+    })
+  )
+]);

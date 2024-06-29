@@ -1,7 +1,7 @@
-<button mat-icon-button (click)="onClick()">
+<button mat-icon-button class="m-1" type="button" (click)="onClick()">
   @if (clicked) {
     <mat-icon style="background-color: #ffd740; border-radius: 50%; font-size: 22px">priority_high</mat-icon>
   } @else {
-    <mat-icon>{{ icon }}</mat-icon>
+    <ng-content />
   }
 </button>

@@ -1,0 +1,5 @@
+<mat-dialog-content>
+  @if (dockerVolume(); as dockerVolume) {
+    <containerized-docker-volumes-form [dockerVolume]="dockerVolume" (submitted)="onSubmitted($event)" />
+  }
+</mat-dialog-content>

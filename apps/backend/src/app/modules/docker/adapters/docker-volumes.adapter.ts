@@ -1,6 +1,6 @@
-import { DockerVolumeDto } from '@containerized/shared';
+import type { DockerVolumeDto } from '@containerized/shared';
 
-import { VolumeInspectInfo } from '../types';
+import type { VolumeInspectInfo } from '../types';
 
 export const DockerVolumesAdapter = {
   toDto(volumeInfo: VolumeInspectInfo): DockerVolumeDto {

@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import type { ActivatedRouteSnapshot } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 const recursivelyGetTitle = (activatedRouteSnapShot: ActivatedRouteSnapshot): string | null => {

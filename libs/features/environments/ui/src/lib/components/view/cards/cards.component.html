@@ -1,0 +1,27 @@
+<div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+  @for (environment of elements(); track environment.id) {
+    <mat-card class="h-full">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title class="grow">
+            <mat-checkbox [checked]="isSelected(environment)" (change)="toggle(environment)" />
+            <span>{{ environment.name }}</span>
+          </mat-card-title>
+          <mat-card-subtitle>{{ environment.image }}</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+
+      <mat-card-content class="h-full">
+        
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <div class="grow"></div>
+
+        <button mat-icon-button (click)="editEnvironment(environment)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  }
+</div>

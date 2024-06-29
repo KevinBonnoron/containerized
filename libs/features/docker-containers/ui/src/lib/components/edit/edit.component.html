@@ -1,1 +1,5 @@
-<containerized-docker-containers-form [dockerContainer]="dockerContainer()" />
+<mat-dialog-content>
+  @if (dockerContainer(); as dockerContainer) {
+    <containerized-docker-containers-form [dockerContainer]="dockerContainer" (submitted)="onSubmitted($event)" />
+  }
+</mat-dialog-content>

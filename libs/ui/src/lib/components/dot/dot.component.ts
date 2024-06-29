@@ -1,15 +1,14 @@
 import { NgStyle } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
   standalone: true,
   imports: [NgStyle],
   selector: 'containerized-dot',
-  template: '<span [ngStyle]="{ backgroundColor: color }"></span>',
+  templateUrl: './dot.component.html',
   styleUrl: './dot.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DotComponent {
-  @Input()
-  color: string = '#3f51b5';
+  readonly color = input.required<string>();
 }

@@ -1,13 +1,15 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
+import { createBuilder } from 'monadojs';
 
-import { DockerContainerDto, DockerContainerDtos } from '@containerized/shared';
+import type { DockerContainerDto } from '@containerized/shared';
 
 import { DockerContainersService } from '../../services';
 
 import { DockerContainersController } from './docker-containers.controller';
 
 describe('DockerContainersController', () => {
+  const dockerContainerDtoBuilder = createBuilder<DockerContainerDto>();
   let dockerContainersController: DockerContainersController;
   let dockerContainersService: DockerContainersService;
 
@@ -33,14 +35,16 @@ describe('DockerContainersController', () => {
 
   describe('getAll', () => {
     it('should return containers', () => {
-      const dockerContainerDtos: DockerContainerDtos = [{
-        id: "6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee",
-        names: ["dazzling_villani"],
-        image: "nginx",
-        created: new Date("2023-12-09T13:50:11.000Z"),
-        status: "created",
-        ports: []
-      }];
+      const dockerContainerDtos = [
+        dockerContainerDtoBuilder({
+          id: '6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee',
+          names: ['dazzling_villani'],
+          image: 'nginx',
+          created: new Date('2023-12-09T13:50:11.000Z'),
+          status: 'created',
+          ports: []
+        })
+      ];
 
       const findAllSpy = jest.spyOn(dockerContainersService, 'findAll').mockReturnValue(Promise.resolve(dockerContainerDtos));
       expect(dockerContainersController.getAll()).resolves.toEqual(dockerContainerDtos);
@@ -51,11 +55,11 @@ describe('DockerContainersController', () => {
   describe('getOneById', () => {
     it('should return a container', () => {
       const dockerContainerDto: DockerContainerDto = {
-        id: "6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee",
-        names: ["dazzling_villani"],
-        image: "nginx",
-        created: new Date("2023-12-09T13:50:11.000Z"),
-        status: "created",
+        id: '6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee',
+        names: ['dazzling_villani'],
+        image: 'nginx',
+        created: new Date('2023-12-09T13:50:11.000Z'),
+        status: 'created',
         ports: []
       };
 
@@ -74,11 +78,11 @@ describe('DockerContainersController', () => {
   describe('create', () => {
     it('should create a container', () => {
       const dockerContainerDto: DockerContainerDto = {
-        id: "6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee",
-        names: ["dazzling_villani"],
-        image: "nginx",
-        created: new Date("2023-12-09T13:50:11.000Z"),
-        status: "created",
+        id: '6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee',
+        names: ['dazzling_villani'],
+        image: 'nginx',
+        created: new Date('2023-12-09T13:50:11.000Z'),
+        status: 'created',
         ports: []
       };
 
@@ -91,11 +95,11 @@ describe('DockerContainersController', () => {
   describe('delete', () => {
     it('should delete a container', () => {
       const dockerContainerDto: DockerContainerDto = {
-        id: "6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee",
-        names: ["dazzling_villani"],
-        image: "nginx",
-        created: new Date("2023-12-09T13:50:11.000Z"),
-        status: "created",
+        id: '6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee',
+        names: ['dazzling_villani'],
+        image: 'nginx',
+        created: new Date('2023-12-09T13:50:11.000Z'),
+        status: 'created',
         ports: []
       };
 

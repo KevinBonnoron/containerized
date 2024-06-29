@@ -1,4 +1,4 @@
-import { IsOptional, IsString, MinLength } from 'class-validator';
+import { IsString, MinLength } from 'class-validator';
 
 export class CreateEnvironmentDto {
   @IsString()
@@ -6,6 +6,6 @@ export class CreateEnvironmentDto {
   name: string;
 
   @IsString()
-  @IsOptional()
-  url?: string;
+  @MinLength(1)
+  url: string;
 }

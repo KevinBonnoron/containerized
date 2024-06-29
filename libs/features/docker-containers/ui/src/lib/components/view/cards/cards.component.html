@@ -1,0 +1,58 @@
+<div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+  @for (dockerContainer of elements(); track dockerContainer.id) {
+    <mat-card class="h-full">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title class="grow">
+            <mat-checkbox [checked]="isSelected(dockerContainer)" (change)="toggle(dockerContainer)" />
+            <span>{{ dockerContainer.name }}</span>
+          </mat-card-title>
+          <containerized-dot [title]="dockerContainer.status" [color]="indicatorColor(dockerContainer.status)" />
+          <mat-card-subtitle>{{ dockerContainer.image }}</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+
+      <mat-card-content class="h-full">
+        <mat-chip-listbox>
+          @for (port of dockerContainer.ports; track port) {
+            <mat-chip (click)="openForwardedPort(port)">{{ stringifyPort(port) }}</mat-chip>
+          }
+        </mat-chip-listbox>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        @if (dockerContainer.status === 'exited' || dockerContainer.status === 'created') {
+          <button mat-icon-button (click)="startContainer(dockerContainer)">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+        } @else if (dockerContainer.status === 'running') {
+          <button mat-icon-button (click)="restartContainer(dockerContainer)">
+            <mat-icon>sync</mat-icon>
+          </button>
+          <button mat-icon-button (click)="stopContainer(dockerContainer)">
+            <mat-icon>stop</mat-icon>
+          </button>
+          <button mat-icon-button (click)="execContainer(dockerContainer)">
+            <rmx-icon name="terminal-line" />
+          </button>
+        }
+
+        <button mat-icon-button (click)="logContainer(dockerContainer)">
+          <rmx-icon name="file-text-line" />
+        </button>
+
+        <div class="grow"></div>
+
+        @if (dockerContainer.status !== 'removing') {
+          <button mat-icon-button (click)="editContainer(dockerContainer)">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <containerized-confirm-button (confirmed)="removeContainer(dockerContainer)">
+            <rmx-icon name="delete-bin-line" />
+          </containerized-confirm-button>
+        }
+      </mat-card-actions>
+    </mat-card>
+  }
+</div>

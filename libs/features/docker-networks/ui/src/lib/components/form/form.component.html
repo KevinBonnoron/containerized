@@ -1,0 +1,18 @@
+<form [formGroup]="formGroup" class="flex flex-col gap-4" (ngSubmit)="onSubmit(formGroup.value)">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Scope</mat-label>
+    <input matInput formControlName="scope" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Driver</mat-label>
+    <input matInput formControlName="driver" />
+  </mat-form-field>
+
+  <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup.valid">Submit</button>
+</form>

@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import type { Routes } from '@angular/router';
 
 import { provideChildTranslate } from '@containerized/ui';
 
@@ -12,6 +12,6 @@ const providers = [
 export const routes: Routes = [
   { path: '', providers, children: [
     { path: 'home', loadComponent: () => import('./components').then((m) => m.WelcomeHomeComponent), data: { title: 'home.welcome.title' } },
-    { path: '', pathMatch: 'full', redirectTo: 'home' },
+    { path: '**', pathMatch: 'full', redirectTo: 'home' },
   ] }
 ];

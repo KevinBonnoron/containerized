@@ -1,22 +1,29 @@
-import { Body, Controller, Get, NotFoundException, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Query } from '@nestjs/common';
 
-import { PullImageDto } from '../../dtos';
+import { ApiTags } from '@nestjs/swagger';
+import { GetImageQueryDto, PullImageDto } from '../../dtos';
 import { DockerImagesService } from '../../services';
 
 @Controller('/images')
+@ApiTags('docker images')
 export class DockerImagesController {
   constructor(
     private readonly dockerImagesService: DockerImagesService
   ) {}
 
   @Get()
-  getAll() {
-    return this.dockerImagesService.findAll();
+  findAll(@Query() query: GetImageQueryDto) {
+    return this.dockerImagesService.findAll(query);
+  }
+
+  @Delete('/:id')
+  remove(@Param('id') id: string) {
+    return this.dockerImagesService.remove(id);
   }
 
   @Post('/pull')
-  async pull(@Body() pullImageDto: PullImageDto) {
-    return await this.dockerImagesService.pull(pullImageDto)
+  pull(@Body() pullImageDto: PullImageDto) {
+    return this.dockerImagesService.pull(pullImageDto)
       .then(() => ({ success: true }))
       .catch((error) => {
         throw new NotFoundException({ success: false, message: error });

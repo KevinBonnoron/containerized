@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/features/environments/ui/src",
   "prefix": "containerized",
-  "tags": ["type:libs"],
+  "tags": ["type:libs", "scope:ui", "feature:environments"],
   "projectType": "library",
   "targets": {
     "test": {

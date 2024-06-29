@@ -1,0 +1,27 @@
+<div class="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+  @for (dockerImage of elements(); track dockerImage.id) {
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title class="grow">{{ dockerImage.id | slice:0:10 }}@if(dockerImage.id.length > 10) {...}</mat-card-title>
+        </mat-card-title-group>
+      </mat-card-header>
+
+      <mat-card-content class="h-full">
+        <mat-chip-listbox>
+          @for (tag of dockerImage.tags; track tag) {
+            <mat-chip>{{ tag }}</mat-chip>
+          }
+        </mat-chip-listbox>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <div class="grow"></div>
+
+        <containerized-confirm-button (confirmed)="removeImage(dockerImage)">
+          <rmx-icon name="delete-bin-line" />
+        </containerized-confirm-button>
+      </mat-card-actions>
+    </mat-card>
+  }
+</div>

@@ -1,7 +1,7 @@
 import { NotFoundException } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 
-import { DockerVolumeDto, DockerVolumeDtos } from '@containerized/shared';
+import type { DockerVolumeDto, DockerVolumeDtos } from '@containerized/shared';
 
 import { DockerVolumesService } from '../../services';
 

@@ -1,0 +1,11 @@
+meta {
+  name: version
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/docker/{{environment_id}}/system/version
+  body: none
+  auth: none
+}

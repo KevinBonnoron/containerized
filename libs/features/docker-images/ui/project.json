@@ -3,7 +3,7 @@
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/features/docker-images/ui/src",
   "prefix": "containerized",
-  "tags": ["type:libs", "scope:ui", "feature:docker-image"],
+  "tags": ["type:libs", "scope:ui", "feature:docker-images"],
   "projectType": "library",
   "targets": {
     "test": {
@@ -21,6 +21,14 @@
           "libs/features/docker-images/ui/**/*.ts",
           "libs/features/docker-images/ui/**/*.html"
         ]
+      }
+    },
+    "i18n:extract": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "cwd": "libs/features/docker-images/ui",
+        "command": "ngx-translate-extract --input ./src --output ./src/assets/i18n/{en,fr}.json --sort --clean --format namespaced-json --format-indentation '  '"
       }
     }
   }

@@ -1,0 +1,17 @@
+meta {
+  name: delete
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{base_url}}/docker/{{environment_id}}/containers/973aca55dc3e7171d55f5ed4412f39e79a20488310a0e1785f453c3519d6b01b
+  body: none
+  auth: none
+}
+
+body:json {
+  {
+    "image": "hello-world"
+  }
+}

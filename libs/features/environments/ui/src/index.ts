@@ -1,1 +1,1 @@
-export * from './lib/feature-environment-ui/feature-environment-ui.component';
+export * from './lib/public_api';
