@@ -1,8 +1,9 @@
 import { provideHttpClient } from '@angular/common/http';
-import { provideExperimentalZonelessChangeDetection, type ApplicationConfig } from '@angular/core';
+import { isDevMode, provideExperimentalZonelessChangeDetection, type ApplicationConfig } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
+import { provideServiceWorker } from '@angular/service-worker';
 import { provideApiUrl, provideRootTranslate, provideSocketIO } from '@containerized/ui';
 import { RiCalendarEventLine, RiCalendarLine, RiDashboard2Line, RiDatabase2Line, RiDeleteBinLine, RiFileTextLine, RiHomeLine, RiImage2Line, RiInstanceLine, RiLayoutGridLine, RiSettingsLine, RiShareLine, RiTableLine, RiTerminalBoxLine, RiTerminalLine, provideRemixIcon } from 'angular-remix-icon';
 import { environment } from '../environments/environment';
@@ -14,6 +15,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(appRoutes),
     provideHttpClient(),
     provideAnimations(),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
     provideRootTranslate(),
     provideApiUrl(environment.apiUrl),
     provideSocketIO(environment.apiUrl),

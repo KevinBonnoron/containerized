@@ -143,6 +143,18 @@
     rxjs "7.8.1"
     source-map "0.7.4"
 
+"@angular-devkit/core@18.0.7":
+  version "18.0.7"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/core/-/core-18.0.7.tgz#c792a90fd30dcbabe7b4821ac16e88f99c9ed8f7"
+  integrity sha512-pVmuE37DNuTe3S4Lh1jg6U4dyHljiZiqI99u3gtS7PF765P4AeGlugHIYE7ztC74fYd9gy04sWnbeV+RQuBTVw==
+  dependencies:
+    ajv "8.13.0"
+    ajv-formats "3.0.1"
+    jsonc-parser "3.2.1"
+    picomatch "4.0.2"
+    rxjs "7.8.1"
+    source-map "0.7.4"
+
 "@angular-devkit/schematics@16.0.1":
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-16.0.1.tgz#d49387e9e41c9cce98b155da51b0e193333dd178"
@@ -171,6 +183,17 @@
   integrity sha512-lzjPp8qWV4p3reyKZ2QRF7rQYc17WMCR61vKldQJBuJrS30yx87x22ASn4BCAo7kKKRv8gXJmoXjCPDFlcfRsw==
   dependencies:
     "@angular-devkit/core" "18.0.6"
+    jsonc-parser "3.2.1"
+    magic-string "0.30.10"
+    ora "5.4.1"
+    rxjs "7.8.1"
+
+"@angular-devkit/schematics@18.0.7":
+  version "18.0.7"
+  resolved "https://registry.yarnpkg.com/@angular-devkit/schematics/-/schematics-18.0.7.tgz#c56808e0440ccfae4764d8a6b6b8a83218e57ab5"
+  integrity sha512-U0lYPjhOaxdw+0UwVsv5y+wJdZ6DD+0ASiommB7j9kEmrPp53MhSvYNYWvwbIWwJceDa3eNq3fAmQOlVXvFCVg==
+  dependencies:
+    "@angular-devkit/core" "18.0.7"
     jsonc-parser "3.2.1"
     magic-string "0.30.10"
     ora "5.4.1"
@@ -400,10 +423,26 @@
   dependencies:
     tslib "^2.3.0"
 
+"@angular/pwa@^18.0.7":
+  version "18.0.7"
+  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-18.0.7.tgz#e20e40ed571bf357e5bde4613df540d2988f1f4a"
+  integrity sha512-YKdPM4kI5q5kvWj9CeVMYzpSYyEvG+dvk3XuTN4faCkL7zgUTUMYDTWAzOZvHrNFW/reXLe8wTceiHy1KDFwww==
+  dependencies:
+    "@angular-devkit/schematics" "18.0.7"
+    "@schematics/angular" "18.0.7"
+    parse5-html-rewriting-stream "7.0.0"
+
 "@angular/router@18.0.5":
   version "18.0.5"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-18.0.5.tgz#67d095ffe44710a2dd5e8bcc8757c3cd64d78858"
   integrity sha512-GmdzD5FZYPKCGP6mV3AZraAU6czfGcjjCym6mIsdJr3DyMwnQSwaaHAu8qlQbPDVfsP+gKVSPh1JxI1lzzarLA==
+  dependencies:
+    tslib "^2.3.0"
+
+"@angular/service-worker@18.0.5":
+  version "18.0.5"
+  resolved "https://registry.yarnpkg.com/@angular/service-worker/-/service-worker-18.0.5.tgz#006c074fdcdae0676bbefd458a07667241c9cea3"
+  integrity sha512-Uz3rKHY0pBOvAfxhaGI9X8glS8oaPv03e3GsucZhzuDCijQGHQb1Plaz56NntIGvGaghLMq3zwV7YLPnquarvw==
   dependencies:
     tslib "^2.3.0"
 
@@ -3976,6 +4015,15 @@
   dependencies:
     "@angular-devkit/core" "18.0.6"
     "@angular-devkit/schematics" "18.0.6"
+    jsonc-parser "3.2.1"
+
+"@schematics/angular@18.0.7":
+  version "18.0.7"
+  resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-18.0.7.tgz#36a60ee5290b16dc63d1a1c61dce49eb0d02aeee"
+  integrity sha512-46jcRDnMYfnwN5CAXimbptbrBdLrNhG3NFGNT1B2O9DzmlXwLclK/z7lz/v70RcBNWMnOcnsYMFB4IbLhN/Fog==
+  dependencies:
+    "@angular-devkit/core" "18.0.7"
+    "@angular-devkit/schematics" "18.0.7"
     jsonc-parser "3.2.1"
 
 "@sigstore/bundle@^2.3.2":
