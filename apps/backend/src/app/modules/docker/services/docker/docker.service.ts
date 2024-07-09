@@ -26,8 +26,11 @@ export class DockerService {
         const json = parser.tryParse();
         if (json) {
           const event = DockerEventsAdapter.toDto(json);
-          dockerGateway.onEvent(event);
-          this.events.push(event);
+          if (event) {
+            // TODO remove this check when all events are handled
+            dockerGateway.onEvent(event);
+            this.events.push(event);
+          }
         }
       });
     });

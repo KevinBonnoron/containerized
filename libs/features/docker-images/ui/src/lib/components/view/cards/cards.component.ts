@@ -1,5 +1,5 @@
 import { SlicePipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { ConfirmButtonComponent } from '@containerized/ui';
@@ -11,5 +11,6 @@ import { AbstractUiDirective } from '../../../directives';
   standalone: true,
   imports: [AngularRemixIconComponent, ConfirmButtonComponent, MatCardModule, MatChipsModule, SlicePipe],
   templateUrl: './cards.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DockerImagesViewCardsComponent extends AbstractUiDirective {}

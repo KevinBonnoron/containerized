@@ -13,11 +13,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .mat-mdc-text-field-wrapper.mdc-text-field--outlined
-  .mat-mdc-form-field-infix:has(> mat-number-input) {
+.mat-mdc-form-field-infix:has(> mat-number-input) {
   padding-top: 12px !important;
   padding-bottom: 8px !important;
 }
 
 .mat-mdc-form-field {
   display: unset !important;
+}
+
+.mat-mdc-card-header *,
+.mat-mdc-chip * {
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
 }

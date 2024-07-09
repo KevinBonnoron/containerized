@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { setFailure, setSuccess, withCrud } from '@containerized/data-access';
-import { DockerContainerDto } from '@containerized/shared';
+import type { DockerContainerDto } from '@containerized/shared';
 import { patchState, signalStore, withHooks, withMethods } from '@ngrx/signals';
 import { addEntity, removeEntity, updateEntity } from '@ngrx/signals/entities';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -16,7 +16,15 @@ export const DockerContainersStore = signalStore(
       start: rxMethod<DockerContainerDto['id']>(
         pipe(
           tap((id) => patchState(store, updateEntity({ id, changes: { status: 'starting' } }))),
-          switchMap((id) => dockerContainersService.start(id).pipe(tap(() => patchState(store, updateEntity({ id, changes: { status: 'running' } })))))
+          switchMap((id) =>
+            dockerContainersService.start(id).pipe(
+              tap(() => patchState(store, updateEntity({ id, changes: { status: 'running' } }))),
+              catchError((error) => {
+                patchState(store, updateEntity({ id, changes: { status: 'exited' } }));
+                return of(error);
+              })
+            )
+          )
         )
       ),
       stop: rxMethod<DockerContainerDto['id']>(
