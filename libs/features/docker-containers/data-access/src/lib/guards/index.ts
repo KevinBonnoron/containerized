@@ -1,1 +1,1 @@
-export * from './load-docker-containers.guard';
+export * from './docker-containers-loaded.guard';

@@ -18,54 +18,24 @@
     "paths": {
       "@containerized/data-access": ["libs/data-access/src/index.ts"],
       "@containerized/db": ["libs/db/src/index.ts"],
-      "@containerized/features/docker-networks/data-access": [
-        "libs/features/docker-networks/data-access/src/index.ts"
-      ],
-      "@containerized/features/docker-networks/ui": [
-        "libs/features/docker-networks/ui/src/index.ts"
-      ],
-      "@containerized/features/docker-containers/data-access": [
-        "libs/features/docker-containers/data-access/src/index.ts"
-      ],
-      "@containerized/features/docker-containers/ui": [
-        "libs/features/docker-containers/ui/src/index.ts"
-      ],
-      "@containerized/features/docker-events/data-access": [
-        "libs/features/docker-events/data-access/src/index.ts"
-      ],
-      "@containerized/features/docker-events/ui": [
-        "libs/features/docker-events/ui/src/index.ts"
-      ],
-      "@containerized/features/docker-images/data-access": [
-        "libs/features/docker-images/data-access/src/index.ts"
-      ],
-      "@containerized/features/docker-images/ui": [
-        "libs/features/docker-images/ui/src/index.ts"
-      ],
-      "@containerized/features/docker-volumes/data-access": [
-        "libs/features/docker-volumes/data-access/src/index.ts"
-      ],
-      "@containerized/features/docker-volumes/ui": [
-        "libs/features/docker-volumes/ui/src/index.ts"
-      ],
-      "@containerized/features/docker-system/data-access": [
-        "libs/features/docker-system/data-access/src/index.ts"
-      ],
-      "@containerized/features/docker-system/ui": [
-        "libs/features/docker-system/ui/src/index.ts"
-      ],
-      "@containerized/features/environments/data-access": [
-        "libs/features/environments/data-access/src/index.ts"
-      ],
-      "@containerized/features/environments/ui": [
-        "libs/features/environments/ui/src/index.ts"
-      ],
-      "@containerized/features/shell/ui": [
-        "libs/features/shell/ui/src/index.ts"
-      ],
-      "@containerized/features/welcome/ui": [
-        "libs/features/welcome/ui/src/index.ts"
-      ],
+      "@containerized/features/docker-networks/data-access": ["libs/features/docker-networks/data-access/src/index.ts"],
+      "@containerized/features/docker-networks/ui": ["libs/features/docker-networks/ui/src/index.ts"],
+      "@containerized/features/docker-containers/data-access": ["libs/features/docker-containers/data-access/src/index.ts"],
+      "@containerized/features/docker-containers/ui": ["libs/features/docker-containers/ui/src/index.ts"],
+      "@containerized/features/docker-events/data-access": ["libs/features/docker-events/data-access/src/index.ts"],
+      "@containerized/features/docker-events/ui": ["libs/features/docker-events/ui/src/index.ts"],
+      "@containerized/features/docker-images/data-access": ["libs/features/docker-images/data-access/src/index.ts"],
+      "@containerized/features/docker-images/ui": ["libs/features/docker-images/ui/src/index.ts"],
+      "@containerized/features/docker-volumes/data-access": ["libs/features/docker-volumes/data-access/src/index.ts"],
+      "@containerized/features/docker-volumes/ui": ["libs/features/docker-volumes/ui/src/index.ts"],
+      "@containerized/features/docker-system/data-access": ["libs/features/docker-system/data-access/src/index.ts"],
+      "@containerized/features/docker-system/ui": ["libs/features/docker-system/ui/src/index.ts"],
+      "@containerized/features/environments/data-access": ["libs/features/environments/data-access/src/index.ts"],
+      "@containerized/features/environments/ui": ["libs/features/environments/ui/src/index.ts"],
+      "@containerized/features/registries/data-access": ["libs/features/registries/data-access/src/index.ts"],
+      "@containerized/features/registries/ui": ["libs/features/registries/ui/src/index.ts"],
+      "@containerized/features/shell/ui": ["libs/features/shell/ui/src/index.ts"],
+      "@containerized/features/welcome/ui": ["libs/features/welcome/ui/src/index.ts"],
       "@containerized/shared": ["libs/shared/src/index.ts"],
       "@containerized/ui": ["libs/ui/src/index.ts"],
       "@containerized/utils": ["libs/utils/src/index.ts"]

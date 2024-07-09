@@ -1,7 +1,7 @@
 import { Directive, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DockerVolumesStore } from '@containerized/features/docker-volumes/data-access';
-import { DockerVolumeDto } from '@containerized/shared';
+import type { DockerVolumeDto } from '@containerized/shared';
 import { DataLayoutComponent } from 'ngx-data-layout';
 
 @Directive({
@@ -13,7 +13,7 @@ export abstract class AbstractUiDirective extends DataLayoutComponent<DockerVolu
   private readonly dockerVolumesStore = inject(DockerVolumesStore);
 
   editVolume(dockerVolume: DockerVolumeDto) {
-    this.router.navigate(['../edit', dockerVolume.name], { relativeTo: this.activatedRoute });
+    this.router.navigate([dockerVolume.name, 'edit'], { relativeTo: this.activatedRoute });
   }
 
   removeVolume(dockerVolume: DockerVolumeDto) {

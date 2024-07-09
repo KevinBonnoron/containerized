@@ -1,6 +1,6 @@
 import { Directive, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EnvironmentDto } from '@containerized/shared';
+import type { EnvironmentDto } from '@containerized/shared';
 import { DataLayoutComponent } from 'ngx-data-layout';
 
 @Directive({
@@ -11,6 +11,6 @@ export class AbstractUiDirective extends DataLayoutComponent<EnvironmentDto> {
   private readonly activatedRoute = inject(ActivatedRoute);
 
   editEnvironment(environment: EnvironmentDto) {
-    this.router.navigate(['./', environment.id, 'edit'], { relativeTo: this.activatedRoute });
+    this.router.navigate([environment.id, 'edit'], { relativeTo: this.activatedRoute });
   }
 }

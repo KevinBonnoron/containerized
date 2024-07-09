@@ -1,5 +1,5 @@
 import type { Routes } from '@angular/router';
-import { dockerContainerRouteResolver, loadDockerContainersGuard, provideDockerContainers } from '@containerized/features/docker-containers/data-access';
+import { dockerContainerRouteResolver, dockerContainersLoadedGuard, provideDockerContainers } from '@containerized/features/docker-containers/data-access';
 import { provideDockerVolumes } from '@containerized/features/docker-volumes/data-access';
 import { provideChildTranslate } from '@containerized/ui';
 import * as en from '../assets/i18n/en.json';
@@ -8,7 +8,7 @@ import { DockerContainersCreateComponent, DockerContainersEditComponent, DockerC
 
 const providers = [provideDockerVolumes(), provideDockerContainers(), provideChildTranslate({ fr, en })];
 
-const canActivate = [loadDockerContainersGuard];
+const canActivate = [dockerContainersLoadedGuard];
 
 export const dockerContainersRoutes: Routes = [
   {

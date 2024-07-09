@@ -15,7 +15,11 @@ export const dockerVolumesRoutes: Routes = [
         loadComponent: () => import('./components').then((m) => m.DockerVolumesViewComponent),
         children: [
           { path: 'create', loadComponent: () => import('./components').then((m) => m.DockerVolumesDialogComponent), data: { title: 'volume.create.title', dialogComponent: DockerVolumesCreateComponent } },
-          { path: ':id', resolve: { dockerVolume: dockerVolumeRouteResolver }, children: [{ path: 'edit', loadComponent: () => import('./components').then((m) => m.DockerVolumesDialogComponent), data: { title: 'container.edit.title', dialogComponent: DockerVolumesEditComponent } }] },
+          {
+            path: ':id',
+            resolve: { dockerVolume: dockerVolumeRouteResolver },
+            children: [{ path: 'edit', loadComponent: () => import('./components').then((m) => m.DockerVolumesDialogComponent), data: { title: 'container.edit.title', dialogComponent: DockerVolumesEditComponent } }],
+          },
         ],
       },
       { path: '', pathMatch: 'full', redirectTo: 'view' },

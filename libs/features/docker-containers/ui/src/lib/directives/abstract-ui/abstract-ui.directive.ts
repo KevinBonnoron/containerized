@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Directive, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DockerContainersStore } from '@containerized/features/docker-containers/data-access';
-import { DockerContainerDto, DockerContainerPort } from '@containerized/shared';
+import type { DockerContainerDto, DockerContainerPort } from '@containerized/shared';
 import { DataLayoutComponent } from 'ngx-data-layout';
 
 const STATUS_COLORS: Record<DockerContainerDto['status'], string> = {
@@ -47,7 +47,7 @@ export class AbstractUiDirective extends DataLayoutComponent<DockerContainerDto>
   }
 
   execContainer(dockerContainer: DockerContainerDto) {
-    this.router.navigate(['./', dockerContainer.id, 'exec'], { relativeTo: this.activatedRoute });
+    this.router.navigate([dockerContainer.id, 'exec'], { relativeTo: this.activatedRoute });
   }
 
   restartContainer(dockerContainer: DockerContainerDto) {
@@ -55,11 +55,11 @@ export class AbstractUiDirective extends DataLayoutComponent<DockerContainerDto>
   }
 
   logContainer(dockerContainer: DockerContainerDto) {
-    this.router.navigate(['./', dockerContainer.id, 'log'], { relativeTo: this.activatedRoute });
+    this.router.navigate([dockerContainer.id, 'log'], { relativeTo: this.activatedRoute });
   }
 
   editContainer(dockerContainer: DockerContainerDto) {
-    this.router.navigate(['./', dockerContainer.id, 'edit'], { relativeTo: this.activatedRoute });
+    this.router.navigate([dockerContainer.id, 'edit'], { relativeTo: this.activatedRoute });
   }
 
   removeContainer(dockerContainer: DockerContainerDto) {

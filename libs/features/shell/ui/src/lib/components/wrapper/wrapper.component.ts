@@ -39,9 +39,10 @@ export class ShellWrapperComponent {
   readonly breakpoint = toSignal(this.breakpointObserver.observe([...DESKTOP_BREAKPOINTS, ...MOBILE_BREAKPOINTS]).pipe(map((breakpointState) => (DESKTOP_BREAKPOINTS.some((breakpoint) => breakpointState.breakpoints[breakpoint]) ? 'desktop' : 'mobile'))));
 
   readonly menuItems = computed(() => {
-    let menuItems: MenuItems = [
+    const menuItems: MenuItems = [
       { label: 'home', icon: 'home-line', path: '/welcome' },
       { label: 'environments', icon: 'settings-line', path: '/environments' },
+      { label: 'registries', icon: 'git-repository-line', path: '/registries' },
     ];
 
     const selectedEnvironment = this.environmentsStore.selected();

@@ -16,7 +16,7 @@ export const networkRoutes: Routes = [
       {
         path: 'view',
         loadComponent: () => import('./components').then((m) => m.DockerNetworksViewComponent),
-        children: [{ path: 'create', loadComponent: () => import('./components').then((m) => m.DockerNetworksDialogComponent), data: { title: 'container.create.title', dialogComponent: DockerNetworksCreateComponent } }],
+        children: [{ path: 'create', loadComponent: () => import('./components').then((m) => m.DockerNetworksDialogComponent), data: { title: 'network.create.title', dialogComponent: DockerNetworksCreateComponent } }],
       },
       { path: '', pathMatch: 'full', redirectTo: 'view' },
     ],

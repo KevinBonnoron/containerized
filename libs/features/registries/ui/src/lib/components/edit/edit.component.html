@@ -1,0 +1,5 @@
+<mat-dialog-content>
+  @if (registry(); as registry) {
+    <containerized-registries-form [registry]="registry" (submitted)="onSubmitted($event)" />
+  }
+</mat-dialog-content>

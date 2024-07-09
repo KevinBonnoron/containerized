@@ -1,0 +1,40 @@
+<form [formGroup]="formGroup" class="flex flex-col gap-4" (ngSubmit)="onSubmit(formGroup.value)">
+  <mat-form-field class="grow">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field class="grow">
+    <mat-label>Type</mat-label>
+    <mat-select formControlName="type">
+      <mat-option value="dockerhub">DockerHub</mat-option>
+      <mat-option value="gitlab">Gitlab</mat-option>
+      <mat-option value="custom">Custom</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="grow">
+    <mat-label>Username</mat-label>
+    <input matInput formControlName="username" />
+  </mat-form-field>
+
+  @if (typeCtrl.value === 'dockerhub' || typeCtrl.value === 'gitlab') {
+    <mat-form-field class="grow">
+      <mat-label>Access Token</mat-label>
+      <input matInput formControlName="accessToken" />
+    </mat-form-field>
+  }
+  @if (typeCtrl.value === 'custom') {
+    <mat-form-field class="grow">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" />
+    </mat-form-field>
+
+    <mat-form-field class="grow">
+      <mat-label>Url</mat-label>
+      <input matInput formControlName="url" />
+    </mat-form-field>
+  }
+
+  <button mat-raised-button type="submit" color="primary" [disabled]="!formGroup.valid">Submit</button>
+</form>

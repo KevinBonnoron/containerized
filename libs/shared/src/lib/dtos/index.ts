@@ -5,3 +5,4 @@ export * from './docker-network.dto';
 export * from './docker-system.dto';
 export * from './docker-volume.dto';
 export * from './environment.dto';
+export * from './registry.dto';

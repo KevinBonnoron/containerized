@@ -4,7 +4,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 
 import { join } from 'path';
 
-import { DockerModule, EnvironmentModule } from './modules';
+import { DockerModule, EnvironmentModule, RegistryModule } from './modules';
 
 @Module({
   imports: [
@@ -15,6 +15,7 @@ import { DockerModule, EnvironmentModule } from './modules';
     }),
     DockerModule,
     EnvironmentModule,
+    RegistryModule,
   ],
 })
 export class AppModule {}

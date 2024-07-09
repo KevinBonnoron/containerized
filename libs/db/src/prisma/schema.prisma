@@ -14,7 +14,17 @@ datasource db {
 }
 
 model Environment {
-  id Int @id @default(autoincrement())
+  id   Int    @id @default(autoincrement())
   name String @unique
-  url String
+  url  String
+}
+
+model Registry {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  type String
+  username String
+  accessToken String?
+  password String?
+  url String?
 }
