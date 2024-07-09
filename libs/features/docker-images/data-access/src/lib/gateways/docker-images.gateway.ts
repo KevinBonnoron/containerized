@@ -25,7 +25,7 @@ export class DockerImagesGateway {
           labels: {}, // TODO
           tags: [], // TODO
           used: false, // TODO
-        }
+        };
 
         this.dockerImagesStore.patchState(addEntity(dockerImage));
         break;

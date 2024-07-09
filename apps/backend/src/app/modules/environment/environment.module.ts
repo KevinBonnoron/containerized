@@ -7,6 +7,6 @@ import { EnvironmentsService } from './services';
 @Module({
   controllers: [EnvironmentsController],
   providers: [PrismaService, EnvironmentsService],
-  exports: [EnvironmentsService]
+  exports: [EnvironmentsService],
 })
 export class EnvironmentModule {}

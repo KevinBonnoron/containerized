@@ -8,7 +8,7 @@ export const DockerImagesAdapter = {
       id: imageInfo.Id,
       labels: imageInfo.Labels ?? {},
       tags: imageInfo.RepoTags,
-      used: imageInfo.Containers !== -1
-    }
-  }
-}
+      used: imageInfo.Containers !== -1,
+    };
+  },
+};

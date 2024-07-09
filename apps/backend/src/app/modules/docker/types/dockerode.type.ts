@@ -11,7 +11,7 @@ export interface ListImagesOptions {
     label?: string[];
     reference?: string[];
     since?: string[];
-  }
+  };
 }
 
 export interface PullImageOptions {
@@ -22,7 +22,7 @@ export interface PullImageOptions {
     email?: string;
     serveraddress: string;
     key?: string;
-  }
+  };
 }
 
 export interface RunContainerOptions {
@@ -58,7 +58,7 @@ export interface PruneImagesOptions {
     dangling: {
       false: boolean;
     };
-  }
+  };
 }
 
 export interface PruneContainersOptions {
@@ -72,7 +72,7 @@ export interface ListVolumesOptions extends VolumeListOptions {
 export interface VolumePruneOptions {
   filters?: {
     label?: string[];
-  }
+  };
 }
 
 export interface Mount {
@@ -94,91 +94,91 @@ export interface VolumeInspectInfo extends DockerodeVolumeInspectInfo {
 export interface SystemInfo {
   ID: string;
   Containers: number;
-  ContainersRunning: number,
-  ContainersPaused: number,
-  ContainersStopped: number,
-  Images: number,
-  Driver: string,
-  DriverStatus: string[][],
-  DockerRootDir: string,
-  SystemStatus: any[][],
+  ContainersRunning: number;
+  ContainersPaused: number;
+  ContainersStopped: number;
+  Images: number;
+  Driver: string;
+  DriverStatus: string[][];
+  DockerRootDir: string;
+  SystemStatus: any[][];
   Plugins: {
-    Volume: string[] | null,
-    Network: string[] | null,
-    Authorization: string[] | null,
-    Log: string[] | null,
-  },
-  MemoryLimit: boolean,
-  SwapLimit: boolean,
-  KernelMemory: boolean,
-  CpuCfsPeriod: boolean,
-  CpuCfsQuota: boolean,
-  CPUShares: boolean,
-  CPUSet: boolean,
-  OomKillDisable: boolean,
-  IPv4Forwarding: boolean,
-  BridgeNfIptables: boolean,
-  BridgeNfIp6tables: boolean,
-  Debug: boolean,
-  NFd: number,
-  NGoroutines: number,
-  SystemTime: string,
-  LoggingDriver: string,
-  CgroupDriver: string,
-  NEventsListener: number,
-  KernelVersion: string,
-  OperatingSystem: string,
-  OSType: string,
-  Architecture: string,
-  NCPU: number,
-  MemTotal: number,
-  IndexServerAddress: string,
+    Volume: string[] | null;
+    Network: string[] | null;
+    Authorization: string[] | null;
+    Log: string[] | null;
+  };
+  MemoryLimit: boolean;
+  SwapLimit: boolean;
+  KernelMemory: boolean;
+  CpuCfsPeriod: boolean;
+  CpuCfsQuota: boolean;
+  CPUShares: boolean;
+  CPUSet: boolean;
+  OomKillDisable: boolean;
+  IPv4Forwarding: boolean;
+  BridgeNfIptables: boolean;
+  BridgeNfIp6tables: boolean;
+  Debug: boolean;
+  NFd: number;
+  NGoroutines: number;
+  SystemTime: string;
+  LoggingDriver: string;
+  CgroupDriver: string;
+  NEventsListener: number;
+  KernelVersion: string;
+  OperatingSystem: string;
+  OSType: string;
+  Architecture: string;
+  NCPU: number;
+  MemTotal: number;
+  IndexServerAddress: string;
   RegistryConfig: {
-    AllowNondistributableArtifactsCIDRs: any[] | null,
-    AllowNondistributableArtifactsHostnames: any[] | null,
-    InsecureRegistryCIDRs: string[],
-    IndexConfigs: Record<string, { Name: string; Mirrors: any[]; Secure: boolean; Official: boolean }>,
-    Mirrors: any[] | null
-  },
-  GenericResources: any[] | null,
-  HttpProxy: string,
-  HttpsProxy: string,
-  NoProxy: string,
-  Name: string,
-  Labels: string[],
-  ExperimentalBuild: boolean,
-  ServerVersion: string,
-  ClusterStore: string,
-  ClusterAdvertise: string,
-  Runtimes: Record<string, { path: string, status: Record<string, string> }>,
-  DefaultRuntime: string,
+    AllowNondistributableArtifactsCIDRs: any[] | null;
+    AllowNondistributableArtifactsHostnames: any[] | null;
+    InsecureRegistryCIDRs: string[];
+    IndexConfigs: Record<string, { Name: string; Mirrors: any[]; Secure: boolean; Official: boolean }>;
+    Mirrors: any[] | null;
+  };
+  GenericResources: any[] | null;
+  HttpProxy: string;
+  HttpsProxy: string;
+  NoProxy: string;
+  Name: string;
+  Labels: string[];
+  ExperimentalBuild: boolean;
+  ServerVersion: string;
+  ClusterStore: string;
+  ClusterAdvertise: string;
+  Runtimes: Record<string, { path: string; status: Record<string, string> }>;
+  DefaultRuntime: string;
   Swarm: {
-    NodeID: string,
-    NodeAddr: string,
-    LocalNodeState: string,
-    ControlAvailable: boolean,
-    Error: string,
-    RemoteManagers: any[] | null,
-    Nodes?: number,
-    Managers?: number,
-    Cluster?: {}
-  },
-  LiveRestoreEnabled: boolean,
-  Isolation: string,
-  InitBinary: string,
+    NodeID: string;
+    NodeAddr: string;
+    LocalNodeState: string;
+    ControlAvailable: boolean;
+    Error: string;
+    RemoteManagers: any[] | null;
+    Nodes?: number;
+    Managers?: number;
+    Cluster?: {};
+  };
+  LiveRestoreEnabled: boolean;
+  Isolation: string;
+  InitBinary: string;
   ContainerdCommit: {
-    ID: string,
-    Expected: string
-  },
+    ID: string;
+    Expected: string;
+  };
   RuncCommit: {
-    ID: string,
-    Expected: string
-  },
+    ID: string;
+    Expected: string;
+  };
   InitCommit: {
-    ID: string,
-    Expected: string
-  },
-  SecurityOptions: string[]
+    ID: string;
+    Expected: string;
+  };
+  SecurityOptions: string[];
 }
 
 export interface SystemPing {

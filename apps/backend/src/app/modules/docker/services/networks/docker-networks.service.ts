@@ -5,9 +5,7 @@ import { DockerService } from '../docker/docker.service';
 
 @Injectable()
 export class DockerNetworksService {
-  constructor(
-    private readonly dockerService: DockerService
-  ) { }
+  constructor(private readonly dockerService: DockerService) {}
 
   async findAll() {
     return (await this.dockerService.listNetworks()).map(DockerNetworksAdapter.toDto);

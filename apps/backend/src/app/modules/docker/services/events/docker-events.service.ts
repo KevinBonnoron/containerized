@@ -4,9 +4,7 @@ import { DockerService } from '../docker/docker.service';
 
 @Injectable()
 export class DockerEventsService {
-  constructor(
-    private readonly dockerService: DockerService
-  ) {}
+  constructor(private readonly dockerService: DockerService) {}
 
   findAll() {
     return this.dockerService.listEvents();

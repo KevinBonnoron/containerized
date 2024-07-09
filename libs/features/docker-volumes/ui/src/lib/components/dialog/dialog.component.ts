@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, inject, Injector, OnInit, Type } from '@angular/core';
+import { Component, ComponentFactoryResolver, Injector, OnInit, Type, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,11 +20,14 @@ export class DockerVolumesDialogComponent implements OnInit {
   readonly dialogComponent = toSignal<Type<Component>>(this.activatedRoute.data.pipe(map(({ dialogComponent }) => dialogComponent)), { requireSync: true });
 
   ngOnInit(): void {
-    this.matDialog.open(this.dialogComponent(), {
-      injector: this.injector,
-      componentFactoryResolver: this.injector.get(ComponentFactoryResolver), // TODO see https://github.com/angular/components/issues/25262
-      minWidth: '80vw',
-      data: { dockerVolume: this.dockerVolume() }
-    }).afterClosed().subscribe(() => this.router.navigate(['../../'], { relativeTo: this.activatedRoute }));
+    this.matDialog
+      .open(this.dialogComponent(), {
+        injector: this.injector,
+        componentFactoryResolver: this.injector.get(ComponentFactoryResolver), // TODO see https://github.com/angular/components/issues/25262
+        minWidth: '80vw',
+        data: { dockerVolume: this.dockerVolume() },
+      })
+      .afterClosed()
+      .subscribe(() => this.router.navigate(['../../'], { relativeTo: this.activatedRoute }));
   }
 }

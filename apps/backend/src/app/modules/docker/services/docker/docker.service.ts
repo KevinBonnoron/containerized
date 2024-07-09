@@ -13,7 +13,7 @@ export class DockerService {
 
   constructor(
     private readonly docker: Docker,
-    readonly dockerGateway: DockerGateway,
+    readonly dockerGateway: DockerGateway
   ) {
     docker.getEvents({}, (error, result) => {
       if (error) {
@@ -55,10 +55,12 @@ export class DockerService {
   async listContainers(options?: ListContainersOptions) {
     return new Promise<ContainerInspectInfo[]>(async (resolve, reject) => {
       const containerInfos = await this.docker.listContainers(options as ContainerListOptions);
-      const containerInspectInfos = await Promise.all(containerInfos.map(async (containerInfo) => {
-        const container = this.getContainer(containerInfo.Id);
-        return await container.inspect();
-      }));
+      const containerInspectInfos = await Promise.all(
+        containerInfos.map(async (containerInfo) => {
+          const container = this.getContainer(containerInfo.Id);
+          return await container.inspect();
+        })
+      );
 
       resolve(containerInspectInfos);
     });
@@ -98,7 +100,13 @@ export class DockerService {
           return reject(error);
         }
 
-        return resolve(buffer.toString('utf-8').split('\n').map((value) => value.substring(8)).join('\n'));
+        return resolve(
+          buffer
+            .toString('utf-8')
+            .split('\n')
+            .map((value) => value.substring(8))
+            .join('\n')
+        );
       });
     });
   }
@@ -110,7 +118,7 @@ export class DockerService {
 
   // VOLUMES
   listVolumes(options?: ListVolumesOptions) {
-    return this.docker.listVolumes(options) as Promise<{ Volumes: VolumeInspectInfo[], Warnings: string[] | null }>;
+    return this.docker.listVolumes(options) as Promise<{ Volumes: VolumeInspectInfo[]; Warnings: string[] | null }>;
   }
 
   getVolume(name: string) {
@@ -118,8 +126,8 @@ export class DockerService {
   }
 
   async createVolume(options?: VolumeCreateOptions) {
-    // TODO this a bug from the type definitions, the return should be Volume. 
-    const volume = await this.docker.createVolume(options) as unknown as Volume;
+    // TODO this a bug from the type definitions, the return should be Volume.
+    const volume = (await this.docker.createVolume(options)) as unknown as Volume;
     return this.getVolume(volume.name);
   }
 
@@ -169,7 +177,7 @@ export class DockerService {
       dockerOptions = stringMatcher()
         .match(/((?:https:\/\/|http:\/\/|tcp:\/\/|)[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}(?::[0-9]+)?)/, ([host, port]) => ({ host, port: parseInt(port) }))
         .match(/unix:(.*)/, ([socketPath]) => ({ socketPath }))
-        .query(url)
+        .query(url);
     }
 
     return new DockerService(new Docker(dockerOptions), gateway);

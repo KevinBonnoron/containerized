@@ -6,6 +6,6 @@ import { DockerImagesService } from './services';
 export const DockerImagesStore = signalStore(
   withCrud<DockerImageDto>(DockerImagesService),
   withHooks({
-    onInit: (store) => store.load()
-  }),
+    onInit: (store) => store.load(),
+  })
 );

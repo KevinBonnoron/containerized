@@ -14,9 +14,7 @@ interface Value {
   imports: [MatSelectModule, MatInputModule, ReactiveFormsModule],
   templateUrl: './select-wrapper.component.html',
   styleUrl: './select-wrapper.component.scss',
-  providers: [
-    { provide: NG_VALUE_ACCESSOR, multi: true, useExisting: SelectWrapperComponent }
-  ]
+  providers: [{ provide: NG_VALUE_ACCESSOR, multi: true, useExisting: SelectWrapperComponent }],
 })
 export class SelectWrapperComponent implements ControlValueAccessor {
   readonly values = input.required<Value[]>();

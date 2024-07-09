@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Callback<V = any> = (value: NonNullable<V>, key: PropertyKey, object: NonNullable<unknown>) => string;
 
 const get = (object: Record<PropertyKey, unknown>, value: string): unknown => {
@@ -9,7 +8,7 @@ const get = (object: Record<PropertyKey, unknown>, value: string): unknown => {
   }
 
   return get(object[key] as NonNullable<unknown>, temp.join('.'));
-}
+};
 
 class ObjectTokenizer<T> {
   private readonly matchers: Record<PropertyKey, Callback> = {};

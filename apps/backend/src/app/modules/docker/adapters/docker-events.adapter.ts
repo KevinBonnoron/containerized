@@ -28,8 +28,8 @@ const DockerImageEventsAdapter = {
       default:
         console.log('UNPROCESSEABLE EVENT', dockerImageEvent);
     }
-  }
-}
+  },
+};
 
 const DockerContainerEventsAdapter = {
   toDto(dockerContainerEvent: DockerContainerEvent): ContainerEventDto {
@@ -98,8 +98,8 @@ const DockerContainerEventsAdapter = {
       default:
         console.log('UNPROCESSEABLE EVENT', dockerContainerEvent);
     }
-  }
-}
+  },
+};
 
 const DockerVolumeEventsAdapter = {
   toDto(dockerVolumeEvent: DockerVolumeEvent): VolumeEventDto {
@@ -116,7 +116,7 @@ const DockerVolumeEventsAdapter = {
           name: dockerVolumeEvent.Actor.ID,
           action: dockerVolumeEvent.Action,
           driver: dockerVolumeEvent.Actor.Attributes.driver,
-        }
+        };
 
       case 'mount':
         return {
@@ -142,13 +142,13 @@ const DockerVolumeEventsAdapter = {
           ...baseEventDto,
           action: dockerVolumeEvent.Action,
           reclaimed: parseInt(dockerVolumeEvent.Actor.Attributes.reclaimed),
-        }
+        };
 
       default:
         console.log('UNPROCESSEABLE EVENT', dockerVolumeEvent);
     }
-  }
-}
+  },
+};
 
 const DockerNetworkEventsAdapter = {
   toDto(dockerNetworkEvent: DockerNetworkEvent): NetworkEventDto {
@@ -188,8 +188,8 @@ const DockerNetworkEventsAdapter = {
       default:
         console.log('UNPROCESSEABLE EVENT', dockerNetworkEvent);
     }
-  }
-}
+  },
+};
 
 const DockerBuilderEventsAdapter = {
   toDto(dockerBuilderEvent: DockerBuilderEvent): BuilderEventDto {
@@ -209,8 +209,8 @@ const DockerBuilderEventsAdapter = {
       default:
         console.log('UNPROCESSEABLE EVENT', dockerBuilderEvent);
     }
-  }
-}
+  },
+};
 
 export const DockerEventsAdapter = {
   toDto(eventInfo: EventInfo): DockerEventDto {
@@ -233,5 +233,5 @@ export const DockerEventsAdapter = {
       default:
         console.log('UNPROCESSEABLE EVENT', eventInfo);
     }
-  }
-}
+  },
+};

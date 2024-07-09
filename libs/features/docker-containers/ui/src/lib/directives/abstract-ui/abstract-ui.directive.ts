@@ -15,10 +15,10 @@ const STATUS_COLORS: Record<DockerContainerDto['status'], string> = {
   dead: 'grey',
   paused: 'yellow',
   removing: '#EF0078',
-}
+};
 
 @Directive({
-  standalone: true
+  standalone: true,
 })
 export class AbstractUiDirective extends DataLayoutComponent<DockerContainerDto> {
   private readonly document = inject(DOCUMENT);
@@ -31,7 +31,7 @@ export class AbstractUiDirective extends DataLayoutComponent<DockerContainerDto>
   }
 
   stringifyPort(port: DockerContainerPort) {
-    return `${port.container}${!port.host || port.container === port.host ? '' : `:${port.host}` }/${port.protocol}`;
+    return `${port.container}${!port.host || port.container === port.host ? '' : `:${port.host}`}/${port.protocol}`;
   }
 
   openForwardedPort(port: DockerContainerPort) {

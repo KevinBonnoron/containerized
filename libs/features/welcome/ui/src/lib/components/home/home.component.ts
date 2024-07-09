@@ -6,6 +6,6 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './home.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WelcomeHomeComponent {}

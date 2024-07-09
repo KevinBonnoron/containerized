@@ -21,8 +21,6 @@ export class DockerNetworksCreateComponent {
 
   onSubmitted(dockerNetwork: DockerNetworkDto) {
     this.dockerNetworksStore.create(dockerNetwork);
-    this.dockerNetworksStore
-      .whenSuccess(() => this.matDialogRef.close())
-      .whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
+    this.dockerNetworksStore.whenSuccess(() => this.matDialogRef.close()).whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
   }
 }

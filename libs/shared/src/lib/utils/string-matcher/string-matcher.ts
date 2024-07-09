@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Callback = (...value: any[]) => unknown;
 
 interface Matcher {
@@ -26,7 +25,7 @@ class StringMatcher {
 
   /**
    * Run all the matchers against the passed string until either string is completely parsed or no match are found.
-   * 
+   *
    * @param value the string to be checked
    * @returns void
    * @throws Error when no match are found

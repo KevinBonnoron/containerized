@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { RedirectCommand, Router, type ActivatedRouteSnapshot, type ResolveFn } from '@angular/router';
+import { type ActivatedRouteSnapshot, RedirectCommand, type ResolveFn, Router } from '@angular/router';
 import { EnvironmentsStore } from '@containerized/features/environments/data-access';
 import { DockerContainerDto } from '@containerized/shared';
 import { DockerContainersStore } from '../docker-containers.store';
@@ -15,4 +15,4 @@ export const dockerContainerRouteResolver: ResolveFn<DockerContainerDto> = (acti
   }
 
   return dockerContainersStore.selected() ?? new RedirectCommand(router.createUrlTree(['docker', environmentsStore.selectedId(), 'container']));
-}
+};

@@ -4,9 +4,9 @@ import { BaseDockerEvent } from './base-docker-event.type';
 type DockerVolumeBaseEvent = BaseDockerEvent<'volume'>;
 
 interface DockerVolumeCreateEvent extends DockerVolumeBaseEvent {
-  Action: 'create',
+  Action: 'create';
   Actor: {
-    ID: string,
+    ID: string;
     Attributes: {
       driver: string;
     };
@@ -34,14 +34,14 @@ interface DockerVolumeUnmount extends DockerVolumeBaseEvent {
     Attributes: {
       container: string;
       driver: 'local'; // TODO
-    }
-  }
+    };
+  };
 }
 
 interface DockerVolumeDestroyEvent extends DockerVolumeBaseEvent {
-  Action: 'destroy',
+  Action: 'destroy';
   Actor: {
-    ID: string,
+    ID: string;
     Attributes: {
       driver: string;
     };
@@ -49,7 +49,7 @@ interface DockerVolumeDestroyEvent extends DockerVolumeBaseEvent {
 }
 
 interface DockerVolumePruneEvent extends DockerVolumeBaseEvent {
-  Action: 'prune',
+  Action: 'prune';
   Actor: {
     ID: string;
     Attributes: {

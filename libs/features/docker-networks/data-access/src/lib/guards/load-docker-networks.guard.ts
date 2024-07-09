@@ -10,6 +10,6 @@ export const loadDockerNetworksGuard: CanActivateFn = () => {
   const dockerNetworksStore = inject(DockerNetworksStore);
   return toObservable(dockerNetworksStore.loaded).pipe(
     filter(isTrue),
-    map(() => true),
+    map(() => true)
   );
-}
+};

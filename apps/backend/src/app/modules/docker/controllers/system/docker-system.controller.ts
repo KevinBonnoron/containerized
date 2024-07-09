@@ -6,9 +6,7 @@ import { DockerSystemService } from '../../services';
 @Controller('system')
 @ApiTags('docker system')
 export class DockerSystemController {
-  constructor(
-    private readonly dockerSystemService: DockerSystemService
-  ) { }
+  constructor(private readonly dockerSystemService: DockerSystemService) {}
 
   @Get('/info')
   info() {

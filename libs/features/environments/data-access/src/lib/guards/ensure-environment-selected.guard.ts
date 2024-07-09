@@ -15,4 +15,4 @@ export const ensureEnvironmentSelectedGuard: CanActivateFn = (route) => {
     filter((value) => value !== undefined),
     map(() => true)
   );
-}
+};

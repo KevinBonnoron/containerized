@@ -4,9 +4,7 @@ import { DockerService } from '../docker/docker.service';
 
 @Injectable()
 export class DockerSystemService {
-  constructor(
-    private readonly dockerService: DockerService
-  ) {}
+  constructor(private readonly dockerService: DockerService) {}
 
   async getInfo() {
     const info = await this.dockerService.info();

@@ -18,8 +18,8 @@ import { DockerVolumesViewTableComponent } from './table/table.component';
       components: [
         { component: DockerVolumesViewCardsComponent, name: 'cards' },
         { component: DockerVolumesViewTableComponent, name: 'table' },
-      ]
-    })
+      ],
+    }),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

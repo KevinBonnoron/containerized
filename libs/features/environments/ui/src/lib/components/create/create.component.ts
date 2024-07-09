@@ -18,8 +18,6 @@ export class EnvironmentsCreateComponent {
 
   onSubmitted(environment: EnvironmentDto) {
     this.environmentsStore.create(environment);
-    this.environmentsStore
-      .whenSuccess(() => this.matDialogRef.close())
-      .whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
+    this.environmentsStore.whenSuccess(() => this.matDialogRef.close()).whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
   }
 }

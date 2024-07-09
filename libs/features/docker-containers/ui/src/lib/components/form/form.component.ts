@@ -16,21 +16,10 @@ import { DockerContainersFormVolumeComponent } from './form-volume/form-volume.c
 @Component({
   selector: 'containerized-docker-containers-form',
   standalone: true,
-  imports: [
-    AngularRemixIconComponent,
-    DockerContainersFormEnvironmentComponent,
-    DockerContainersFormLabelComponent,
-    DockerContainersFormPortComponent,
-    DockerContainersFormVolumeComponent,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatTabsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [AngularRemixIconComponent, DockerContainersFormEnvironmentComponent, DockerContainersFormLabelComponent, DockerContainersFormPortComponent, DockerContainersFormVolumeComponent, MatButtonModule, MatFormFieldModule, MatInputModule, MatTabsModule, ReactiveFormsModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DockerContainersFormComponent implements OnInit {
   private readonly matDialog = inject(MatDialog);
@@ -78,50 +67,55 @@ export class DockerContainersFormComponent implements OnInit {
         })),
         environments: this.environmentsCtrl.value.reduce((accumulator, { key, value }) => ({ ...accumulator, [key]: value }), {}),
         publish: this.portsCtrl.value,
-        labels: this.labelsCtrl.value.reduce((accumulator, { key, value }) => ({ ...accumulator, [key]: value }), {})
+        labels: this.labelsCtrl.value.reduce((accumulator, { key, value }) => ({ ...accumulator, [key]: value }), {}),
       },
-      tag
-    }
+      tag,
+    };
 
-    this.matDialog.open(DockerCommandParserDialogComponent, { data: { dockerCommand } }).afterClosed().subscribe((result?: DockerRunCommand) => {
-      if (result) {
-        this.imageCtrl.setValue(result.image);
+    this.matDialog
+      .open(DockerCommandParserDialogComponent, { data: { dockerCommand } })
+      .afterClosed()
+      .subscribe((result?: DockerRunCommand) => {
+        if (result) {
+          this.imageCtrl.setValue(result.image);
 
-        if (result.options.name) {
-          this.nameCtrl.setValue(result.options.name);
+          if (result.options.name) {
+            this.nameCtrl.setValue(result.options.name);
+          }
+
+          if (result.options.volumes) {
+            this.volumesCtrl.setValue(
+              result.options.volumes.map((volume) => {
+                if (volume.type === 'named') {
+                  return {
+                    type: 'named',
+                    name: volume.host,
+                    destination: volume.container,
+                    mode: 'z',
+                    propgation: 'rprivate',
+                    rw: false,
+                    driver: 'local',
+                  } as DockerContainerVolume;
+                } else {
+                  return {
+                    type: 'bind',
+                    source: volume.host,
+                    destination: volume.container,
+                    mode: 'z',
+                    propgation: 'rprivate',
+                    rw: false,
+                    driver: 'local',
+                  } as DockerContainerVolume;
+                }
+              })
+            );
+          }
+
+          if (result.options.publish) {
+            this.portsCtrl.setValue(result.options.publish);
+          }
         }
-
-        if (result.options.volumes) {
-          this.volumesCtrl.setValue(result.options.volumes.map((volume) => {
-            if (volume.type === 'named') {
-              return {
-                type: 'named',
-                name: volume.host,
-                destination: volume.container,
-                mode: 'z',
-                propgation: 'rprivate',
-                rw: false,
-                driver: 'local'
-              } as DockerContainerVolume;
-            } else {
-              return {
-                type: 'bind',
-                source: volume.host,
-                destination: volume.container,
-                mode: 'z',
-                propgation: 'rprivate',
-                rw: false,
-                driver: 'local'
-              } as DockerContainerVolume;
-            }
-          }))
-        }
-
-        if (result.options.publish) {
-          this.portsCtrl.setValue(result.options.publish);
-        }
-      }
-    });
+      });
   }
 
   onSubmit(dockerContainer: Partial<DockerContainerDto>) {

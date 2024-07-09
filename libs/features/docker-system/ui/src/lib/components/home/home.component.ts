@@ -6,7 +6,7 @@ import { DockerSystemStore } from '@containerized/features/docker-system/data-ac
   selector: 'containerized-docker-home',
   standalone: true,
   imports: [MatCardModule],
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
 })
 export class DockerHomeComponent {
   private readonly dockerSystemStore = inject(DockerSystemStore);

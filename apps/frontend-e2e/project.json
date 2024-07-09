@@ -21,10 +21,9 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+      "executor": "nx:run-commands",
       "options": {
-        "lintFilePatterns": ["apps/frontend-e2e/**/*.{js,ts}"]
+        "command": "npx @biomejs/biome check {projectRoot}"
       }
     }
   },

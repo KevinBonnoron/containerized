@@ -29,7 +29,7 @@ export class DockerNetworksGateway {
           system: false, // TODO
         };
 
-        this.dockerNetworksStore.patchState(addEntity(dockerNetwork))
+        this.dockerNetworksStore.patchState(addEntity(dockerNetwork));
         break;
 
       case 'destroy':

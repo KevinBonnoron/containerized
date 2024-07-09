@@ -4,6 +4,6 @@ import { DataLayoutComponent } from 'ngx-data-layout';
 import { DockerEventDto } from '@containerized/shared';
 
 @Directive({
-  standalone: true
+  standalone: true,
 })
 export class AbstractUiDirective extends DataLayoutComponent<DockerEventDto> {}

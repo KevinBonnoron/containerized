@@ -3,9 +3,4 @@ import { DockerImagesStore } from './docker-images.store';
 import { DockerImagesGateway } from './gateways';
 import { DockerImagesService } from './services';
 
-export const provideDockerImages = () => makeEnvironmentProviders([
-  DockerImagesStore,
-  DockerImagesService,
-  DockerImagesGateway,
-  { provide: ENVIRONMENT_INITIALIZER, useValue: () => inject(DockerImagesGateway), multi: true },
-]);
+export const provideDockerImages = () => makeEnvironmentProviders([DockerImagesStore, DockerImagesService, DockerImagesGateway, { provide: ENVIRONMENT_INITIALIZER, useValue: () => inject(DockerImagesGateway), multi: true }]);

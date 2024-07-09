@@ -17,8 +17,8 @@ import { DockerNetworksTableComponent } from './table/table.component';
       components: [
         { component: DockerNetworksCardsComponent, name: 'cards' },
         { component: DockerNetworksTableComponent, name: 'table' },
-      ]
-    })
+      ],
+    }),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

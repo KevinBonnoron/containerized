@@ -7,9 +7,7 @@ import { DockerImagesService } from '../../services';
 @Controller('/images')
 @ApiTags('docker images')
 export class DockerImagesController {
-  constructor(
-    private readonly dockerImagesService: DockerImagesService
-  ) {}
+  constructor(private readonly dockerImagesService: DockerImagesService) {}
 
   @Get()
   findAll(@Query() query: GetImageQueryDto) {
@@ -23,7 +21,8 @@ export class DockerImagesController {
 
   @Post('/pull')
   pull(@Body() pullImageDto: PullImageDto) {
-    return this.dockerImagesService.pull(pullImageDto)
+    return this.dockerImagesService
+      .pull(pullImageDto)
       .then(() => ({ success: true }))
       .catch((error) => {
         throw new NotFoundException({ success: false, message: error });

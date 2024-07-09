@@ -4,7 +4,7 @@ import { DockerNetworkDto } from '@containerized/shared';
 import { DataLayoutComponent } from 'ngx-data-layout';
 
 @Directive({
-  standalone: true
+  standalone: true,
 })
 export abstract class AbstractUiDirective extends DataLayoutComponent<DockerNetworkDto> {
   private readonly dockerNetworksStore = inject(DockerNetworksStore);

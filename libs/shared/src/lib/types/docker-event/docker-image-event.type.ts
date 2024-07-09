@@ -42,7 +42,7 @@ interface DockerImageUntagEvent extends DockerImageBaseEvent<'untag'> {
     Attributes: {
       name: string;
     };
-  }
+  };
 }
 
 export type DockerImageEvent = DockerImageDeleteEvent | DockerImagePullEvent | DockerImagePruneEvent | DockerImageUntagEvent;

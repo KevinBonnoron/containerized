@@ -17,16 +17,9 @@ import { EnvironmentSelectorComponent } from '@containerized/features/environmen
 import type { MenuItems } from '../../models';
 import { MenuComponent } from '../menu/menu.component';
 
-const DESKTOP_BREAKPOINTS = [
-  Breakpoints.XLarge,
-  Breakpoints.Large
-] as const;
+const DESKTOP_BREAKPOINTS = [Breakpoints.XLarge, Breakpoints.Large] as const;
 
-const MOBILE_BREAKPOINTS = [
-  Breakpoints.Medium,
-  Breakpoints.Small,
-  Breakpoints.XSmall
-] as const;
+const MOBILE_BREAKPOINTS = [Breakpoints.Medium, Breakpoints.Small, Breakpoints.XSmall] as const;
 
 @Component({
   selector: 'containerized-shell-wrapper',
@@ -43,16 +36,14 @@ export class ShellWrapperComponent {
   private readonly breakpointObserver = inject(BreakpointObserver);
   private readonly environmentsStore = inject(EnvironmentsStore);
 
-  readonly breakpoint = toSignal(this.breakpointObserver.observe([...DESKTOP_BREAKPOINTS, ...MOBILE_BREAKPOINTS]).pipe(
-    map((breakpointState) => DESKTOP_BREAKPOINTS.some((breakpoint) => breakpointState.breakpoints[breakpoint]) ? 'desktop' : 'mobile')
-  ));
+  readonly breakpoint = toSignal(this.breakpointObserver.observe([...DESKTOP_BREAKPOINTS, ...MOBILE_BREAKPOINTS]).pipe(map((breakpointState) => (DESKTOP_BREAKPOINTS.some((breakpoint) => breakpointState.breakpoints[breakpoint]) ? 'desktop' : 'mobile'))));
 
   readonly menuItems = computed(() => {
     let menuItems: MenuItems = [
       { label: 'home', icon: 'home-line', path: '/welcome' },
       { label: 'environments', icon: 'settings-line', path: '/environments' },
     ];
-    
+
     const selectedEnvironment = this.environmentsStore.selected();
     if (selectedEnvironment !== undefined) {
       menuItems.push(
@@ -72,7 +63,7 @@ export class ShellWrapperComponent {
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map(() => this.ngTitle.getTitle()),
-      skipEmpty(),
+      skipEmpty()
     )
   );
 

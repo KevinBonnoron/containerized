@@ -1,4 +1,3 @@
-/* eslint-disable */
 export default {
   displayName: 'feature-docker-events-ui',
   preset: '../../../../jest.preset.js',
@@ -14,9 +13,5 @@ export default {
     ],
   },
   transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
-  snapshotSerializers: [
-    'jest-preset-angular/build/serializers/no-ng-attributes',
-    'jest-preset-angular/build/serializers/ng-snapshot',
-    'jest-preset-angular/build/serializers/html-comment',
-  ],
+  snapshotSerializers: ['jest-preset-angular/build/serializers/no-ng-attributes', 'jest-preset-angular/build/serializers/ng-snapshot', 'jest-preset-angular/build/serializers/html-comment'],
 };

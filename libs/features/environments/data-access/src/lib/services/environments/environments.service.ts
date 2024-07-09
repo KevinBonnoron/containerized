@@ -5,7 +5,7 @@ import { EnvironmentDto } from '@containerized/shared';
 import { API_URL_TOKEN } from '@containerized/ui';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EnvironmentsService {
   private readonly httpClient = inject(HttpClient);

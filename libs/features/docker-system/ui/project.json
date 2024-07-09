@@ -14,13 +14,9 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+      "executor": "nx:run-commands",
       "options": {
-        "lintFilePatterns": [
-          "libs/features/docker-system/ui/**/*.ts",
-          "libs/features/docker-system/ui/**/*.html"
-        ]
+        "command": "npx @biomejs/biome check {projectRoot}"
       }
     }
   }

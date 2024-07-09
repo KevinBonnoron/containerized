@@ -19,7 +19,9 @@
 				"esbenp.prettier-vscode",
 				"eamodio.gitlens",
 				"bradlc.vscode-tailwindcss",
-				"Prisma.prisma"
+				"Prisma.prisma",
+				"github.vscode-github-actions",
+				"biomejs.biome"
 			]
 		}
 	},

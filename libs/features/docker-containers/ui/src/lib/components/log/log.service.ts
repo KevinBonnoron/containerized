@@ -6,8 +6,6 @@ import { map } from 'rxjs';
 @Injectable()
 export class LogService extends DockerRemoteService {
   getLogs(dockerContainer: DockerContainerDto) {
-    return this.get(`/containers/${dockerContainer.id}/logs`, { responseType: 'text' }).pipe(
-      map((value) => value.replace(/\n/g, '<br/>'))
-    );
+    return this.get(`/containers/${dockerContainer.id}/logs`, { responseType: 'text' }).pipe(map((value) => value.replace(/\n/g, '<br/>')));
   }
 }

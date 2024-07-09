@@ -7,9 +7,7 @@ import { DockerContainersService } from '../../services';
 @Controller('/containers')
 @ApiTags('docker containers')
 export class DockerContainersController {
-  constructor(
-    private readonly dockerContainersService: DockerContainersService
-  ) { }
+  constructor(private readonly dockerContainersService: DockerContainersService) {}
 
   @Get()
   getAll(@Query() query?: GetContainerQueryDto) {

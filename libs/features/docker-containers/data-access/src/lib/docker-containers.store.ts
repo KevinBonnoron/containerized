@@ -16,24 +16,16 @@ export const DockerContainersStore = signalStore(
       start: rxMethod<DockerContainerDto['id']>(
         pipe(
           tap((id) => patchState(store, updateEntity({ id, changes: { status: 'starting' } }))),
-          switchMap((id) => dockerContainersService.start(id).pipe(
-            tap(() => patchState(store, updateEntity({ id, changes: { status: 'running' } }))),
-          )),
+          switchMap((id) => dockerContainersService.start(id).pipe(tap(() => patchState(store, updateEntity({ id, changes: { status: 'running' } })))))
         )
       ),
       stop: rxMethod<DockerContainerDto['id']>(
         pipe(
           tap((id) => patchState(store, updateEntity({ id, changes: { status: 'stopping' } }))),
-          switchMap((id) => dockerContainersService.stop(id).pipe(
-            tap(() => patchState(store, updateEntity({ id, changes: { status: 'exited' } }))),
-          )),
+          switchMap((id) => dockerContainersService.stop(id).pipe(tap(() => patchState(store, updateEntity({ id, changes: { status: 'exited' } })))))
         )
       ),
-      restart: rxMethod<DockerContainerDto['id']>(
-        switchMap((id) => dockerContainersService.start(id).pipe(
-          switchMap(() => dockerContainersService.stop(id)),
-        )),
-      ),
+      restart: rxMethod<DockerContainerDto['id']>(switchMap((id) => dockerContainersService.start(id).pipe(switchMap(() => dockerContainersService.stop(id))))),
       replace: rxMethod<DockerContainerDto>(
         pipe(
           switchMap(({ id, ...dockerContainer }) => {
@@ -47,18 +39,20 @@ export const DockerContainersStore = signalStore(
 
             return of(dockerContainer);
           }),
-          switchMap((dockerContainer) => dockerContainersService.run(dockerContainer).pipe(
-            tap((dockerContainer) => patchState(store, addEntity(dockerContainer), setSuccess())),
-            catchError((error) => {
-              patchState(store, setFailure());
-              return of(error);
-            }),
-          )),
-        ),
+          switchMap((dockerContainer) =>
+            dockerContainersService.run(dockerContainer).pipe(
+              tap((dockerContainer) => patchState(store, addEntity(dockerContainer), setSuccess())),
+              catchError((error) => {
+                patchState(store, setFailure());
+                return of(error);
+              })
+            )
+          )
+        )
       ),
     };
   }),
   withHooks({
-    onInit: (store) => store.load()
-  }),
+    onInit: (store) => store.load(),
+  })
 );

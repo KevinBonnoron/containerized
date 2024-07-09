@@ -8,15 +8,13 @@ import { DockerModule, EnvironmentModule } from './modules';
 
 @Module({
   imports: [
-    RouterModule.register([
-      { path: 'docker/:environmentId', module: DockerModule }
-    ]),
+    RouterModule.register([{ path: 'docker/:environmentId', module: DockerModule }]),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'frontend', 'browser'),
       exclude: ['/api/(.*)'],
     }),
     DockerModule,
-    EnvironmentModule
+    EnvironmentModule,
   ],
 })
 export class AppModule {}

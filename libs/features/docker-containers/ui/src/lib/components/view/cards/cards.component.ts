@@ -14,6 +14,6 @@ import { AbstractUiDirective } from '../../../directives';
   imports: [AngularRemixIconComponent, ConfirmButtonComponent, DotComponent, MatButtonModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatIconModule],
   templateUrl: './cards.component.html',
   styleUrl: './cards.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DockerContainersViewCardsComponent extends AbstractUiDirective {}

@@ -28,7 +28,7 @@ export class DockerVolumesGateway {
           scope: '', // TODO
         };
 
-        this.dockerVolumesStore.patchState(addEntity(dockerVolume, { idKey: 'name' }))
+        this.dockerVolumesStore.patchState(addEntity(dockerVolume, { idKey: 'name' }));
         break;
 
       case 'destroy':

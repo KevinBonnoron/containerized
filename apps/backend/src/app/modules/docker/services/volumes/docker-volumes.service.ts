@@ -7,9 +7,7 @@ import { DockerService } from '../docker/docker.service';
 
 @Injectable()
 export class DockerVolumesService {
-  constructor(
-    private readonly dockerService: DockerService
-  ) {}
+  constructor(private readonly dockerService: DockerService) {}
 
   async findAll() {
     const { Volumes: volumeInfos } = await this.dockerService.listVolumes({ all: true });
@@ -23,7 +21,7 @@ export class DockerVolumesService {
 
   async create({ name, driver, labels }: CreateVolumeDto) {
     const volume = await this.dockerService.createVolume({ Name: name, Driver: driver, Labels: labels });
-    const volumeInspectInfo = await volume.inspect() as VolumeInspectInfo;
+    const volumeInspectInfo = (await volume.inspect()) as VolumeInspectInfo;
     return DockerVolumesAdapter.toDto(volumeInspectInfo);
   }
 

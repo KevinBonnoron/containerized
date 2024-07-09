@@ -19,7 +19,7 @@ import { entriesOf } from 'monadojs';
   providers: [
     { provide: NG_VALUE_ACCESSOR, multi: true, useExisting: DockerContainersFormPortComponent },
     { provide: NG_VALIDATORS, multi: true, useExisting: DockerContainersFormPortComponent },
-  ]
+  ],
 })
 export class DockerContainersFormPortComponent implements OnInit, ControlValueAccessor, Validator {
   private readonly destroyRef = inject(DestroyRef);
@@ -28,8 +28,8 @@ export class DockerContainersFormPortComponent implements OnInit, ControlValueAc
   readonly formArray = this.formBuilder.array<FormGroup>([]);
 
   isDisabled = false;
-  onChange = (_value: DockerContainerPort[]) => { };
-  onTouched = () => { };
+  onChange = (_value: DockerContainerPort[]) => {};
+  onTouched = () => {};
 
   ngOnInit() {
     this.formArray.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(() => this.markAsChanged());
@@ -76,8 +76,7 @@ export class DockerContainersFormPortComponent implements OnInit, ControlValueAc
     return [...entriesOf(this.formArray.controls)]
       .filter(([, control]) => control.invalid)
       .map(([key, control]) => ({ [key]: control.errors ?? 'invalid' }))
-      .reduce((accumulator, error) => ({ ...accumulator, ...error }), {})
-      ;
+      .reduce((accumulator, error) => ({ ...accumulator, ...error }), {});
   }
 
   private markAsChanged() {

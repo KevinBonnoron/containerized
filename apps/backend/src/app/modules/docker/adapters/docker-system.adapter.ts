@@ -13,5 +13,5 @@ export const DockerSystemAdapter = {
       images: systemInfo.Images,
       driver: systemInfo.Driver,
     };
-  }
-}
+  },
+};

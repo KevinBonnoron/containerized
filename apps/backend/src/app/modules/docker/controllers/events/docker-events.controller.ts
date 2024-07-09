@@ -6,9 +6,7 @@ import { DockerEventsService } from '../../services';
 @Controller('/events')
 @ApiTags('docker events')
 export class DockerEventsController {
-  constructor(
-    private readonly dockerEventsService: DockerEventsService
-  ) {}
+  constructor(private readonly dockerEventsService: DockerEventsService) {}
 
   @Get()
   getAll() {

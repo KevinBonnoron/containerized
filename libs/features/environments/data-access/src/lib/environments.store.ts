@@ -8,5 +8,5 @@ export const EnvironmentsStore = signalStore(
   withCrud<EnvironmentDto>(EnvironmentsService),
   withHooks({
     onInit: (store) => store.load(),
-  }),
+  })
 );

@@ -16,13 +16,14 @@ describe('DockerVolumesController', () => {
       controllers: [DockerVolumesController],
       providers: [
         {
-          provide: DockerVolumesService, useValue: {
+          provide: DockerVolumesService,
+          useValue: {
             findAll: jest.fn(),
             findOneByName: jest.fn(),
             create: jest.fn(),
             prune: jest.fn(),
-          }
-        }
+          },
+        },
       ],
     }).compile();
 
@@ -32,13 +33,15 @@ describe('DockerVolumesController', () => {
 
   describe('getAll', () => {
     it('should return volumes', () => {
-      const dockerVolumesDtos: DockerVolumeDtos = [{
-        name: '90166baccb5ffc95206738a61b1dabc8ffc68ab0ccab840fcb7c18a141626a97',
-        labels: { 'com.docker.volume.anonymous': '' },
-        driver: 'local',
-        mountPoint: '/var/lib/docker/volumes/90166baccb5ffc95206738a61b1dabc8ffc68ab0ccab840fcb7c18a141626a97/_data',
-        scope: 'local'
-      }];
+      const dockerVolumesDtos: DockerVolumeDtos = [
+        {
+          name: '90166baccb5ffc95206738a61b1dabc8ffc68ab0ccab840fcb7c18a141626a97',
+          labels: { 'com.docker.volume.anonymous': '' },
+          driver: 'local',
+          mountPoint: '/var/lib/docker/volumes/90166baccb5ffc95206738a61b1dabc8ffc68ab0ccab840fcb7c18a141626a97/_data',
+          scope: 'local',
+        },
+      ];
 
       const findAllSpy = jest.spyOn(dockerVolumesService, 'findAll').mockReturnValue(Promise.resolve(dockerVolumesDtos));
       expect(dockerVolumesController.getAll()).resolves.toEqual(dockerVolumesDtos);
@@ -53,7 +56,7 @@ describe('DockerVolumesController', () => {
         labels: { 'com.docker.volume.anonymous': '' },
         driver: 'local',
         mountPoint: '/var/lib/docker/volumes/90166baccb5ffc95206738a61b1dabc8ffc68ab0ccab840fcb7c18a141626a97/_data',
-        scope: 'local'
+        scope: 'local',
       };
 
       const findOneByNameSpy = jest.spyOn(dockerVolumesService, 'findOneByName').mockReturnValue(Promise.resolve(dockerVolumesDto));
@@ -75,7 +78,7 @@ describe('DockerVolumesController', () => {
         labels: { 'com.docker.volume.anonymous': '' },
         driver: 'local',
         mountPoint: '/var/lib/docker/volumes/90166baccb5ffc95206738a61b1dabc8ffc68ab0ccab840fcb7c18a141626a97/_data',
-        scope: 'local'
+        scope: 'local',
       };
 
       const createSpy = jest.spyOn(dockerVolumesService, 'create').mockReturnValue(Promise.resolve(dockerVolumeDto));

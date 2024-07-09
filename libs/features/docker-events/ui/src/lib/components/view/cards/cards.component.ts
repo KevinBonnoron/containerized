@@ -6,6 +6,6 @@ import { AbstractUiDirective } from '../../../directives';
   selector: 'containerized-docker-events-view-cards',
   standalone: true,
   imports: [MatCardModule],
-  templateUrl: './cards.component.html'
+  templateUrl: './cards.component.html',
 })
 export class DockerEventsViewCardsComponent extends AbstractUiDirective {}

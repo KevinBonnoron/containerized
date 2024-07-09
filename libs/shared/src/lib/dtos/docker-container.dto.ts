@@ -36,7 +36,7 @@ export interface DockerContainerLabel {
 }
 
 type DockerContainerStatusExtra = 'starting' | 'stopping';
-export type DockerContainerStatus =  'created' | 'restarting' | 'running' | 'removing' | 'paused' | 'exited' | 'dead' | DockerContainerStatusExtra;
+export type DockerContainerStatus = 'created' | 'restarting' | 'running' | 'removing' | 'paused' | 'exited' | 'dead' | DockerContainerStatusExtra;
 
 export interface DockerContainerDto {
   id: string;

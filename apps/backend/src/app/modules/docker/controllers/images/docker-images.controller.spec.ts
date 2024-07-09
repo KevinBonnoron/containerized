@@ -16,12 +16,13 @@ describe('DockerImagesController', () => {
       controllers: [DockerImagesController],
       providers: [
         {
-          provide: DockerImagesService, useValue: {
+          provide: DockerImagesService,
+          useValue: {
             findAll: jest.fn(),
             pull: jest.fn(),
             pruneImages: jest.fn(),
-          }
-        }
+          },
+        },
       ],
     }).compile();
 
@@ -31,12 +32,14 @@ describe('DockerImagesController', () => {
 
   describe('getAll', () => {
     it('should return images', () => {
-      const dockerImageDtos: DockerImageDtos = [{
-        id: 'sha256:a6bd71f48f6839d9faae1f29d3babef831e76bc213107682c5cc80f0cbb30866',
-        labels: { maintainer: 'NGINX Docker Maintainers <docker-maint@nginx.com>' },
-        tags: ['nginx:latest'],
-        used: false,
-      }];
+      const dockerImageDtos: DockerImageDtos = [
+        {
+          id: 'sha256:a6bd71f48f6839d9faae1f29d3babef831e76bc213107682c5cc80f0cbb30866',
+          labels: { maintainer: 'NGINX Docker Maintainers <docker-maint@nginx.com>' },
+          tags: ['nginx:latest'],
+          used: false,
+        },
+      ];
 
       const findAllSpy = jest.spyOn(dockerImagesService, 'findAll').mockReturnValue(Promise.resolve(dockerImageDtos));
       expect(dockerImagesController.getAll()).resolves.toEqual(dockerImageDtos);
@@ -55,7 +58,7 @@ describe('DockerImagesController', () => {
       const pullSpy = jest.spyOn(dockerImagesService, 'pull').mockReturnValue(Promise.reject({ statusCode: 404, json: null }));
       expect(dockerImagesController.pull({ image: 'not_existing_image', tag: 'latest' })).rejects.toThrow(NotFoundException);
       expect(pullSpy).toHaveBeenCalledWith({ image: 'not_existing_image', tag: 'latest' });
-    })
+    });
   });
 
   describe('prune', () => {

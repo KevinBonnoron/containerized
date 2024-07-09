@@ -8,14 +8,11 @@ describe('DockerUtils', () => {
       image: 'alpine',
       tag: 'latest',
       options: {
-        ...dockerRunOptions
-      }
+        ...dockerRunOptions,
+      },
     });
 
-    it.each([
-      'docker run alpine',
-      'docker run alpine:latest',
-    ])('should return DockerRunOptions for basic command', (command) => {
+    it.each(['docker run alpine', 'docker run alpine:latest'])('should return DockerRunOptions for basic command', (command) => {
       const expected = buildDockerRunOptions({});
 
       expect(parseDockerCommand(command)).toStrictEqual(expected);
@@ -41,18 +38,13 @@ describe('DockerUtils', () => {
       expect(parseDockerCommand(command)).toStrictEqual(expected);
     });
 
-    it.each([
-      'docker run -d alpine',
-      'docker run --detached alpine',
-    ])('should return DockerRunOptions for detached command', (command) => {
+    it.each(['docker run -d alpine', 'docker run --detached alpine'])('should return DockerRunOptions for detached command', (command) => {
       const expected = buildDockerRunOptions({ detached: true });
 
       expect(parseDockerCommand(command)).toStrictEqual(expected);
     });
 
-    it.each([
-      { command: 'docker run -e PUID=1000 -e PGID=1000 alpine', environments: { PUID: '1000', PGID: '1000' } },
-    ])('should return DockerRunOptions for env command', ({ command, environments }) => {
+    it.each([{ command: 'docker run -e PUID=1000 -e PGID=1000 alpine', environments: { PUID: '1000', PGID: '1000' } }])('should return DockerRunOptions for env command', ({ command, environments }) => {
       const expected = buildDockerRunOptions({ environments });
 
       expect(parseDockerCommand(command)).toStrictEqual(expected);
@@ -87,9 +79,7 @@ describe('DockerUtils', () => {
       expect(parseDockerCommand(command)).toStrictEqual(expected);
     });
 
-    it.each([
-      { command: 'docker run --privileged alpine', privileged: true },
-    ])('should return DockerRunOptions for command with privileged mode', ({ command, privileged}) => {
+    it.each([{ command: 'docker run --privileged alpine', privileged: true }])('should return DockerRunOptions for command with privileged mode', ({ command, privileged }) => {
       const expected = buildDockerRunOptions({ privileged });
 
       expect(parseDockerCommand(command)).toStrictEqual(expected);
@@ -97,11 +87,29 @@ describe('DockerUtils', () => {
 
     it.each([
       { command: 'docker run -p 80:80 alpine', publish: [{ protocol: 'tcp', host: 80, container: 80 }] },
-      { command: 'docker run -p 8080:80 -p 443:443/udp alpine', publish: [{ protocol: 'tcp', host: 8080, container: 80 }, { protocol: 'udp', host: 443, container: 443 }] },
-      { command: 'docker run -p 10.0.0.1:8080:80 -p 443:443/udp alpine', publish: [{ protocol: 'tcp', ip: '10.0.0.1', host: 8080, container: 80 }, { protocol: 'udp', host: 443, container: 443 }] },
+      {
+        command: 'docker run -p 8080:80 -p 443:443/udp alpine',
+        publish: [
+          { protocol: 'tcp', host: 8080, container: 80 },
+          { protocol: 'udp', host: 443, container: 443 },
+        ],
+      },
+      {
+        command: 'docker run -p 10.0.0.1:8080:80 -p 443:443/udp alpine',
+        publish: [
+          { protocol: 'tcp', ip: '10.0.0.1', host: 8080, container: 80 },
+          { protocol: 'udp', host: 443, container: 443 },
+        ],
+      },
       { command: 'docker run --publish 80:80 alpine', publish: [{ protocol: 'tcp', host: 80, container: 80 }] },
-      { command: 'docker run --publish 10.0.0.1:8080:80 --publish 443:443/udp alpine', publish: [{ protocol: 'tcp', ip: '10.0.0.1', host: 8080, container: 80 }, { protocol: 'udp', host: 443, container: 443 }] },
-    ])('should return DockerRunOptions for command with publish', ({ command, publish }: { command: string, publish: DockerRunOptions['publish'] }) => {
+      {
+        command: 'docker run --publish 10.0.0.1:8080:80 --publish 443:443/udp alpine',
+        publish: [
+          { protocol: 'tcp', ip: '10.0.0.1', host: 8080, container: 80 },
+          { protocol: 'udp', host: 443, container: 443 },
+        ],
+      },
+    ])('should return DockerRunOptions for command with publish', ({ command, publish }: { command: string; publish: DockerRunOptions['publish'] }) => {
       const expected = buildDockerRunOptions({ publish });
 
       expect(parseDockerCommand(command)).toStrictEqual(expected);
@@ -119,25 +127,19 @@ describe('DockerUtils', () => {
       expect(parseDockerCommand(command)).toStrictEqual(expected);
     });
 
-    it.each([
-      { command: 'docker run --rm alpine', remove: true },
-    ])('should return DockerRunOptions for command with remove', ({ command, remove }) => {
+    it.each([{ command: 'docker run --rm alpine', remove: true }])('should return DockerRunOptions for command with remove', ({ command, remove }) => {
       const expected = buildDockerRunOptions({ remove });
 
       expect(parseDockerCommand(command)).toStrictEqual(expected);
     });
 
-    it.each([
-      { command: 'docker run --security-opt seccomp=/path/to/seccomp/profile.json alpine', securityOptions: { seccomp: '/path/to/seccomp/profile.json' } },
-    ])('should return DockerRunOptions for command with security-opt', ({ command, securityOptions }) => {
+    it.each([{ command: 'docker run --security-opt seccomp=/path/to/seccomp/profile.json alpine', securityOptions: { seccomp: '/path/to/seccomp/profile.json' } }])('should return DockerRunOptions for command with security-opt', ({ command, securityOptions }) => {
       const expected = buildDockerRunOptions({ securityOptions });
 
       expect(parseDockerCommand(command)).toStrictEqual(expected);
     });
 
-    it.each([
-      { command: 'docker run --shm-size="1gb" alpine', shmSize: '1gb' },
-    ])('should return DockerRunOptions for command with shm-size', ({ command, shmSize }) => {
+    it.each([{ command: 'docker run --shm-size="1gb" alpine', shmSize: '1gb' }])('should return DockerRunOptions for command with shm-size', ({ command, shmSize }) => {
       const expected = buildDockerRunOptions({ shmSize });
 
       expect(parseDockerCommand(command)).toStrictEqual(expected);
@@ -173,7 +175,7 @@ describe('DockerUtils', () => {
       { command: 'docker run --volume data:/etc/hosts:rw alpine', volumes: [{ type: 'named', host: 'data', container: '/etc/hosts', options: ['rw'] }] satisfies DockerRunOptions['volumes'] },
       { command: 'docker run --volume data:/etc/hosts:rw,z alpine', volumes: [{ type: 'named', host: 'data', container: '/etc/hosts', options: ['rw', 'z'] }] satisfies DockerRunOptions['volumes'] },
       { command: 'docker run --volume data:/etc/hosts:rw,Z alpine', volumes: [{ type: 'named', host: 'data', container: '/etc/hosts', options: ['rw', 'Z'] }] satisfies DockerRunOptions['volumes'] },
-    ])('should return DockerRunOptions for command with volume binding', ({ command, volumes }: { command: string, volumes: DockerRunOptions['volumes'] }) => {
+    ])('should return DockerRunOptions for command with volume binding', ({ command, volumes }: { command: string; volumes: DockerRunOptions['volumes'] }) => {
       const expected = buildDockerRunOptions({ volumes });
 
       expect(parseDockerCommand(command)).toStrictEqual(expected);
@@ -186,7 +188,7 @@ describe('DockerUtils', () => {
         type: 'run',
         image: 'alpine',
         tag: 'latest',
-        options: {}
+        options: {},
       };
 
       expect(stringifyDockerCommand(dockerRunCommand)).toStrictEqual('docker run alpine:latest');
@@ -198,8 +200,8 @@ describe('DockerUtils', () => {
         image: 'alpine',
         tag: 'latest',
         options: {
-          detached: true
-        }
+          detached: true,
+        },
       };
 
       expect(stringifyDockerCommand(dockerRunCommand)).toStrictEqual('docker run -d alpine:latest');
@@ -211,8 +213,8 @@ describe('DockerUtils', () => {
         image: 'alpine',
         tag: 'latest',
         options: {
-          name: 'web'
-        }
+          name: 'web',
+        },
       };
 
       expect(stringifyDockerCommand(dockerRunCommand)).toStrictEqual('docker run --name=web alpine:latest');
@@ -224,8 +226,8 @@ describe('DockerUtils', () => {
         image: 'alpine',
         tag: 'latest',
         options: {
-          network: 'host'
-        }
+          network: 'host',
+        },
       };
 
       expect(stringifyDockerCommand(dockerRunCommand)).toStrictEqual('docker run --net=host alpine:latest');
@@ -237,8 +239,8 @@ describe('DockerUtils', () => {
         image: 'alpine',
         tag: 'latest',
         options: {
-          privileged: true
-        }
+          privileged: true,
+        },
       };
 
       expect(stringifyDockerCommand(dockerRunCommand)).toStrictEqual('docker run --privileged alpine:latest');
@@ -250,8 +252,8 @@ describe('DockerUtils', () => {
         image: 'alpine',
         tag: 'latest',
         options: {
-          remove: true
-        }
+          remove: true,
+        },
       };
 
       expect(stringifyDockerCommand(dockerRunCommand)).toStrictEqual('docker run --rm alpine:latest');
@@ -263,10 +265,8 @@ describe('DockerUtils', () => {
         image: 'alpine',
         tag: 'latest',
         options: {
-          volumes: [
-            { host: '/etc/hosts', container: '/etc/hosts', type: 'bind' }
-          ]
-        }
+          volumes: [{ host: '/etc/hosts', container: '/etc/hosts', type: 'bind' }],
+        },
       };
 
       expect(stringifyDockerCommand(dockerRunCommand)).toStrictEqual('docker run -v /etc/hosts:/etc/hosts alpine:latest');
@@ -279,9 +279,9 @@ describe('DockerUtils', () => {
         tag: 'latest',
         options: {
           environments: {
-            GUID: '1000'
-          }
-        }
+            GUID: '1000',
+          },
+        },
       };
 
       expect(stringifyDockerCommand(dockerRunCommand)).toStrictEqual('docker run -e GUID=1000 alpine:latest');
@@ -298,8 +298,8 @@ describe('DockerUtils', () => {
             { protocol: 'udp', host: 56, container: 78 },
             { protocol: 'tcp', container: 90 },
             { protocol: 'tcp', ip: '10.0.0.1', host: 100, container: 100 },
-          ]
-        }
+          ],
+        },
       };
 
       expect(stringifyDockerCommand(dockerRunCommand)).toStrictEqual('docker run -p 12:34 -p 56:78/udp -p 90 -p 10.0.0.1:100:100 alpine:latest');
@@ -312,9 +312,9 @@ describe('DockerUtils', () => {
         tag: 'latest',
         options: {
           labels: {
-            maintainer: 'KevinBonnoron'
-          }
-        }
+            maintainer: 'KevinBonnoron',
+          },
+        },
       };
 
       expect(stringifyDockerCommand(dockerRunCommand)).toStrictEqual('docker run -l maintainer=KevinBonnoron alpine:latest');

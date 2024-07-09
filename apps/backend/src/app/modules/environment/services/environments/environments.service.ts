@@ -6,9 +6,7 @@ import type { CreateEnvironmentDto, UpdateEnvironmentDto } from '../../dtos';
 
 @Injectable()
 export class EnvironmentsService {
-  constructor(
-    private readonly prismaService: PrismaService
-  ) { }
+  constructor(private readonly prismaService: PrismaService) {}
 
   findAll() {
     return this.prismaService.environment.findMany();

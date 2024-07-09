@@ -25,6 +25,6 @@ export class EnvironmentSelectorComponent implements OnInit {
   }
 
   selectEnvironment(environment: EnvironmentDto) {
-    this.environmentsStore.selectId(environment.id)
+    this.environmentsStore.selectId(environment.id);
   }
 }

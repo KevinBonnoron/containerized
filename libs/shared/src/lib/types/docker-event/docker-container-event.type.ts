@@ -34,7 +34,7 @@ interface DockerContainerPruneEvent extends DockerContainerBaseEvent<'prune'> {
   Actor: {
     ID: string;
     Attributes: {
-      reclaimed: string
+      reclaimed: string;
     };
   };
 }

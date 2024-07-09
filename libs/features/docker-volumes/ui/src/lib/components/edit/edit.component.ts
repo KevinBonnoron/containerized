@@ -25,8 +25,6 @@ export class DockerVolumesEditComponent {
 
   onSubmitted(dockerVolume: DockerVolumeDto) {
     this.dockerVolumesStore.update(dockerVolume);
-    this.dockerVolumesStore
-      .whenSuccess(() => this.matDialogRef.close())
-      .whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
+    this.dockerVolumesStore.whenSuccess(() => this.matDialogRef.close()).whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
   }
 }

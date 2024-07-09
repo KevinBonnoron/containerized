@@ -18,14 +18,15 @@ describe('DockerContainersController', () => {
       controllers: [DockerContainersController],
       providers: [
         {
-          provide: DockerContainersService, useValue: {
+          provide: DockerContainersService,
+          useValue: {
             findAll: jest.fn(),
             findOneById: jest.fn(),
             create: jest.fn(),
             prune: jest.fn(),
             delete: jest.fn(),
-          }
-        }
+          },
+        },
       ],
     }).compile();
 
@@ -42,8 +43,8 @@ describe('DockerContainersController', () => {
           image: 'nginx',
           created: new Date('2023-12-09T13:50:11.000Z'),
           status: 'created',
-          ports: []
-        })
+          ports: [],
+        }),
       ];
 
       const findAllSpy = jest.spyOn(dockerContainersService, 'findAll').mockReturnValue(Promise.resolve(dockerContainerDtos));
@@ -60,7 +61,7 @@ describe('DockerContainersController', () => {
         image: 'nginx',
         created: new Date('2023-12-09T13:50:11.000Z'),
         status: 'created',
-        ports: []
+        ports: [],
       };
 
       const findOneById = jest.spyOn(dockerContainersService, 'findOneById').mockReturnValue(Promise.resolve(dockerContainerDto));
@@ -83,7 +84,7 @@ describe('DockerContainersController', () => {
         image: 'nginx',
         created: new Date('2023-12-09T13:50:11.000Z'),
         status: 'created',
-        ports: []
+        ports: [],
       };
 
       const createSpy = jest.spyOn(dockerContainersService, 'create').mockReturnValue(Promise.resolve(dockerContainerDto));
@@ -100,12 +101,12 @@ describe('DockerContainersController', () => {
         image: 'nginx',
         created: new Date('2023-12-09T13:50:11.000Z'),
         status: 'created',
-        ports: []
+        ports: [],
       };
 
       const deleteSpy = jest.spyOn(dockerContainersService, 'delete').mockReturnValue(Promise.resolve(dockerContainerDto));
       expect(dockerContainersController.delete('6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee')).resolves.toEqual(dockerContainerDto);
-      expect(deleteSpy).toHaveBeenCalledWith('6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee')
+      expect(deleteSpy).toHaveBeenCalledWith('6430fee20465e46677cbb0f0e18281d4c175e3966b40c940606cd0a54ca93fee');
     });
 
     it('should throw a NotFoundException if container is not found', async () => {

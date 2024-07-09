@@ -14,13 +14,9 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+      "executor": "nx:run-commands",
       "options": {
-        "lintFilePatterns": [
-          "libs/features/environments/data-access/**/*.ts",
-          "libs/features/environments/data-access/**/*.html"
-        ]
+        "command": "npx @biomejs/biome check {projectRoot}"
       }
     }
   }

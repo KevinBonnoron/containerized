@@ -10,6 +10,6 @@ import { AbstractUiDirective } from '../../../directives';
   selector: 'containerized-docker-networks-view-networks',
   standalone: true,
   imports: [AngularRemixIconComponent, ConfirmButtonComponent, MatButtonModule, MatCardModule, MatIconModule],
-  templateUrl: './cards.component.html'
+  templateUrl: './cards.component.html',
 })
 export class DockerNetworksCardsComponent extends AbstractUiDirective {}

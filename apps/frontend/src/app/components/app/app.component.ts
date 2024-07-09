@@ -6,6 +6,6 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet],
   selector: 'containerized-root',
   templateUrl: './app.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {}

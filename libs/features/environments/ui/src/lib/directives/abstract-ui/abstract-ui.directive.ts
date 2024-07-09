@@ -4,7 +4,7 @@ import { EnvironmentDto } from '@containerized/shared';
 import { DataLayoutComponent } from 'ngx-data-layout';
 
 @Directive({
-  standalone: true
+  standalone: true,
 })
 export class AbstractUiDirective extends DataLayoutComponent<EnvironmentDto> {
   private readonly router = inject(Router);

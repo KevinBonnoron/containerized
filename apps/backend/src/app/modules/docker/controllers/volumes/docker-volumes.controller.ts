@@ -7,9 +7,7 @@ import { DockerVolumesService } from '../../services';
 @Controller('/volumes')
 @ApiTags('docker volumes')
 export class DockerVolumesController {
-  constructor(
-    private readonly dockerVolumesService: DockerVolumesService
-  ) {}
+  constructor(private readonly dockerVolumesService: DockerVolumesService) {}
 
   @Get()
   getAll() {

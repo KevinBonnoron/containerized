@@ -18,8 +18,6 @@ export class DockerVolumesCreateComponent {
 
   onSubmitted(dockerVolume: DockerVolumeDto) {
     this.dockerVolumesStore.create(dockerVolume);
-    this.dockerVolumesStore
-      .whenSuccess(() => this.matDialogRef.close())
-      .whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
+    this.dockerVolumesStore.whenSuccess(() => this.matDialogRef.close()).whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
   }
 }

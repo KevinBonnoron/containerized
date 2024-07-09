@@ -14,7 +14,7 @@ const recursivelyGetTitle = (activatedRouteSnapShot: ActivatedRouteSnapshot): st
   }
 
   return null;
-}
+};
 
 export const titleResolver = (activatedRouteSnapShot: ActivatedRouteSnapshot) => {
   const translateService = inject(TranslateService);
@@ -24,4 +24,4 @@ export const titleResolver = (activatedRouteSnapShot: ActivatedRouteSnapshot) =>
   ngTitle.setTitle(title);
 
   return title;
-}
+};

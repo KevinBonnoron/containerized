@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   selector: 'containerized-dot',
   templateUrl: './dot.component.html',
   styleUrl: './dot.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DotComponent {
   readonly color = input.required<string>();

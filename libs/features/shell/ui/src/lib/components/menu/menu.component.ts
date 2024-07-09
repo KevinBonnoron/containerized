@@ -9,7 +9,7 @@ import { MenuItemComponent } from '../menu-item/menu-item.component';
   imports: [MenuItemComponent],
   selector: 'containerized-shell-menu',
   templateUrl: './menu.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent {
   private readonly themeService = inject(ThemeService);

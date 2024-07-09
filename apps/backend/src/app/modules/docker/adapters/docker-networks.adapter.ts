@@ -13,5 +13,5 @@ export const DockerNetworksAdapter = {
       enableIPv6: networkInspectInfo.EnableIPv6,
       system: DOCKER_NETWORK_SYSTEM_NAMES.includes(networkInspectInfo.Name),
     };
-  }
-}
+  },
+};

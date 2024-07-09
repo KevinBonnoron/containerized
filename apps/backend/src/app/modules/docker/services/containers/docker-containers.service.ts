@@ -8,9 +8,7 @@ import { DockerService } from '../docker/docker.service';
 
 @Injectable()
 export class DockerContainersService {
-  constructor(
-    private readonly dockerService: DockerService
-  ) { }
+  constructor(private readonly dockerService: DockerService) {}
 
   async findAll(query?: GetContainerQueryDto) {
     const containerInfos = await this.dockerService.listContainers({ all: true, filters: query });
@@ -32,7 +30,7 @@ export class DockerContainersService {
   }
 
   async remove(id: string) {
-    const container = this.dockerService.getContainer(id)
+    const container = this.dockerService.getContainer(id);
     if (container === undefined) {
       throw new NotFoundException();
     }
@@ -85,7 +83,7 @@ export class DockerContainersService {
       HostConfig: {
         Binds,
         PortBindings,
-      }
+      },
     });
     return this.findOneById(container.id);
   }

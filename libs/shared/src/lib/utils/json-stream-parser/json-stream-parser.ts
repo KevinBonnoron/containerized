@@ -1,7 +1,7 @@
 export class JsonStreamParser {
   private tryCount = 0;
 
-  constructor(private value: string) { }
+  constructor(private value: string) {}
 
   add(value: string) {
     this.value += value;

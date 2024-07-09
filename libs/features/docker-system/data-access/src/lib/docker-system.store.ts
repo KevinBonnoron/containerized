@@ -9,7 +9,10 @@ export const DockerSystemStore = signalStore(
   withHooks({
     onInit(store) {
       const dockerService = inject(DockerSystemService);
-      dockerService.getInfo().pipe(takeUntilDestroyed()).subscribe((info) => patchState(store, { info }));
+      dockerService
+        .getInfo()
+        .pipe(takeUntilDestroyed())
+        .subscribe((info) => patchState(store, { info }));
     },
   })
 );

@@ -7,9 +7,7 @@ import { EnvironmentsService } from '../../services';
 @Controller('/environments')
 @ApiTags('environment')
 export class EnvironmentsController {
-  constructor(
-    private readonly environmentsService: EnvironmentsService
-  ) {}
+  constructor(private readonly environmentsService: EnvironmentsService) {}
 
   @Get()
   getAll() {

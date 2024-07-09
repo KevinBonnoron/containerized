@@ -6,9 +6,7 @@ import { DockerService } from '../docker/docker.service';
 
 @Injectable()
 export class DockerImagesService {
-  constructor(
-    private readonly dockerService: DockerService
-  ) {}
+  constructor(private readonly dockerService: DockerService) {}
 
   async findAll(query: GetImageQueryDto = {}) {
     const imageInfos = await this.dockerService.listImages({ all: true, filters: query });

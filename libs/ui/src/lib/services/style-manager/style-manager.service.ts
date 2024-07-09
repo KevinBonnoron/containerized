@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 
-
 /**
  * Class for managing stylesheets. Stylesheets are loaded into named slots so that they can be
  * removed or changed later.
  */
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class StyleManagerService {
   /**
    * Set the stylesheet with the specified key.

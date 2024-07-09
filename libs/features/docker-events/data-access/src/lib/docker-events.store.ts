@@ -7,5 +7,5 @@ export const DockerEventsStore = signalStore(
   withCrud<DockerEventDto>(DockerEventsService),
   withHooks({
     onInit: (store) => store.load(),
-  }),
+  })
 );

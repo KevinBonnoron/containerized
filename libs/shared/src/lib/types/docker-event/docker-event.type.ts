@@ -1,4 +1,3 @@
-
 // export type DockerPluginAction = 'enable' | 'disable' | 'install' | 'remove';
 // export type DockerDaemonAction = 'reload';
 // export type DockerServiceAction = 'create' | 'remove' | 'update';
@@ -23,6 +22,5 @@ export type EventInfo =
   // | NodeEvent
   // | SecretEvent
   // | ConfigEvent
-  | DockerBuilderEvent
-  // | PluginEvent
-  ;
+  | DockerBuilderEvent;
+// | PluginEvent

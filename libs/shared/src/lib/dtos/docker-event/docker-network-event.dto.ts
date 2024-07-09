@@ -35,4 +35,4 @@ interface NetworkPruneEventDto extends NetworkBaseEventDto {
   reclaimed: number;
 }
 
-export type NetworkEventDto = NetworkCreateEventDto | NetworkDestroyEventDto| NetworkConnectEventDto | NetworkDisconnectEventDto | NetworkPruneEventDto;
+export type NetworkEventDto = NetworkCreateEventDto | NetworkDestroyEventDto | NetworkConnectEventDto | NetworkDisconnectEventDto | NetworkPruneEventDto;

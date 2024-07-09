@@ -1,5 +1,5 @@
 import { provideHttpClient } from '@angular/common/http';
-import { isDevMode, provideExperimentalZonelessChangeDetection, type ApplicationConfig } from '@angular/core';
+import { type ApplicationConfig, isDevMode, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
-      registrationStrategy: 'registerWhenStable:30000'
+      registrationStrategy: 'registerWhenStable:30000',
     }),
     provideRootTranslate(),
     provideApiUrl(environment.apiUrl),

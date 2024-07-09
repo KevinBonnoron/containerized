@@ -10,6 +10,6 @@ import { AbstractUiDirective } from '../../../directives';
   selector: 'containerized-docker-volumes-view-cards',
   standalone: true,
   imports: [AngularRemixIconComponent, ConfirmButtonComponent, MatButtonModule, MatCardModule, MatIconModule],
-  templateUrl: './cards.component.html'
+  templateUrl: './cards.component.html',
 })
 export class DockerVolumesViewCardsComponent extends AbstractUiDirective {}

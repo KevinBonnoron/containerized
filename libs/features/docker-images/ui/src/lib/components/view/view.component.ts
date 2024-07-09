@@ -16,8 +16,8 @@ import { DockerImagesViewTableComponent } from './table/table.component';
       components: [
         { component: DockerImagesViewCardsComponent, name: 'cards' },
         { component: DockerImagesViewTableComponent, name: 'table' },
-      ]
-    })
+      ],
+    }),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

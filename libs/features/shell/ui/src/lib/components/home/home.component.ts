@@ -5,6 +5,6 @@ import { ShellWrapperComponent } from '../wrapper/wrapper.component';
 @Component({
   standalone: true,
   imports: [RouterOutlet, ShellWrapperComponent],
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
 })
 export class ShellHomeComponent {}

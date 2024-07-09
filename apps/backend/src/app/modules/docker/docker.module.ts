@@ -11,14 +11,7 @@ const dockerServices: Record<string, DockerService> = {};
 
 @Module({
   imports: [EnvironmentModule],
-  controllers: [
-    DockerSystemController,
-    DockerContainersController,
-    DockerImagesController,
-    DockerVolumesController,
-    DockerEventsController,
-    DockerNetworksController,
-  ],
+  controllers: [DockerSystemController, DockerContainersController, DockerImagesController, DockerVolumesController, DockerEventsController, DockerNetworksController],
   providers: [
     DockerService,
     DockerSystemService,
@@ -37,13 +30,13 @@ const dockerServices: Record<string, DockerService> = {};
         if (dockerService === undefined) {
           const environment = await environmentsService.findOneById(parseInt(environmentId));
           dockerService = DockerService.fromConfig(dockerGateway, environment.url);
-          dockerServices[environmentId] = dockerService
+          dockerServices[environmentId] = dockerService;
         }
 
         return dockerService;
       },
-      inject: [REQUEST, EnvironmentsService, DockerGateway]
-    }
-  ]
+      inject: [REQUEST, EnvironmentsService, DockerGateway],
+    },
+  ],
 })
-export class DockerModule { }
+export class DockerModule {}

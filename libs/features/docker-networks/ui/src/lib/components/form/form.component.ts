@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, output } from '@angular/core';
+import { Component, OnInit, inject, input, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,7 +34,7 @@ export class DockerNetworksFormComponent implements OnInit {
         scope: dockerNetwork.scope,
         driver: dockerNetwork.driver,
         enableIPv6: dockerNetwork.enableIPv6,
-      })
+      });
     }
   }
 

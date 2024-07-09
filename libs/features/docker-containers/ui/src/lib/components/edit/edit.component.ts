@@ -26,8 +26,6 @@ export class DockerContainersEditComponent {
 
   onSubmitted(dockerContainer: DockerContainerDto) {
     this.dockerContainersStore.replace(dockerContainer);
-    this.dockerContainersStore
-      .whenSuccess(() => this.matDialogRef.close())
-      .whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
+    this.dockerContainersStore.whenSuccess(() => this.matDialogRef.close()).whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
   }
 }

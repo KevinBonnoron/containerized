@@ -25,8 +25,6 @@ export class EnvironmentsEditComponent {
 
   onSubmitted(environment: EnvironmentDto) {
     this.environmentsStore.update(environment);
-    this.environmentsStore
-      .whenSuccess(() => this.matDialogRef.close())
-      .whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
+    this.environmentsStore.whenSuccess(() => this.matDialogRef.close()).whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
   }
 }

@@ -1,5 +1,5 @@
 import { inject } from '@angular/core';
-import { RedirectCommand, Router, type ActivatedRouteSnapshot, type ResolveFn } from '@angular/router';
+import { type ActivatedRouteSnapshot, RedirectCommand, type ResolveFn, Router } from '@angular/router';
 import { EnvironmentsStore } from '@containerized/features/environments/data-access';
 import { EnvironmentDto } from '@containerized/shared';
 
@@ -13,4 +13,4 @@ export const environmentRouteResolver: ResolveFn<EnvironmentDto> = (activatedRou
   }
 
   return environmentsStore.selected() ?? new RedirectCommand(router.createUrlTree(['home']));
-}
+};

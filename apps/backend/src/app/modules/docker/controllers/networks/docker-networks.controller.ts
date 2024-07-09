@@ -6,9 +6,7 @@ import { DockerNetworksService } from '../../services';
 @Controller('/networks')
 @ApiTags('docker networks')
 export class DockerNetworksController {
-  constructor(
-    private readonly dockerNetworksService: DockerNetworksService
-  ) { }
+  constructor(private readonly dockerNetworksService: DockerNetworksService) {}
 
   @Get()
   getAll() {

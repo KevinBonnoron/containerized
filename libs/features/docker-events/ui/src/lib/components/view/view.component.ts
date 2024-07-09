@@ -17,10 +17,10 @@ import { DockerEventsViewTableComponent } from './table/table.component';
       components: [
         { component: DockerEventsViewCardsComponent, name: 'cards' },
         { component: DockerEventsViewTableComponent, name: 'table' },
-      ]
-    })
+      ],
+    }),
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DockerEventsViewComponent {
   private readonly dockerEventsStore = inject(DockerEventsStore);

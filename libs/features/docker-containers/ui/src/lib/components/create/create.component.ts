@@ -18,8 +18,6 @@ export class DockerContainersCreateComponent {
 
   onSubmitted(dockerContainer: DockerContainerDto) {
     this.dockerContainersStore.create(dockerContainer);
-    this.dockerContainersStore
-      .whenSuccess(() => this.matDialogRef.close())
-      .whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
+    this.dockerContainersStore.whenSuccess(() => this.matDialogRef.close()).whenFailure(() => this.matSnackBar.open('Error', 'X', { horizontalPosition: 'end', verticalPosition: 'top', duration: 5000 }));
   }
 }

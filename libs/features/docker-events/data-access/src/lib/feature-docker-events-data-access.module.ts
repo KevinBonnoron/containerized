@@ -4,9 +4,6 @@ import { DockerEventsStore } from './docker-events.store';
 import { DockerEventsService } from './services';
 
 @NgModule({
-  providers: [
-    DockerEventsStore,
-    DockerEventsService,
-  ],
+  providers: [DockerEventsStore, DockerEventsService],
 })
 export class FeatureDockerEventsDataAccessModule {}

@@ -10,9 +10,9 @@ export const DockerNetworksStore = signalStore(
     selected: computed(() => {
       const id = selectedId();
       return id ? entityMap()[id] : undefined;
-    })
+    }),
   })),
   withHooks({
     onInit: (store) => store.load(),
-  }),
+  })
 );

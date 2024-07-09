@@ -3,9 +3,6 @@ import { DockerSystemStore } from './docker-system.store';
 import { DockerSystemService } from './services';
 
 @NgModule({
-  providers: [
-    DockerSystemStore,
-    DockerSystemService
-  ]
+  providers: [DockerSystemStore, DockerSystemService],
 })
 export class FeatureDockerSystemDataAccessModule {}

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { filter, first, Observable, shareReplay, switchMap } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Observable, filter, first, shareReplay, switchMap } from 'rxjs';
 
 import { toObservable } from '@angular/core/rxjs-interop';
 import { EnvironmentsStore } from '@containerized/features/environments/data-access';
@@ -13,17 +13,14 @@ export class DockerRemoteService {
   private readonly apiUrl = inject(API_URL_TOKEN);
   protected readonly httpClient = inject(HttpClient);
 
-  protected readonly selectedId$ = toObservable(this.environmentsStore.selectedId).pipe(
-    filter(notNil),
-    shareReplay(1)
-  );
+  protected readonly selectedId$ = toObservable(this.environmentsStore.selectedId).pipe(filter(notNil), shareReplay(1));
 
-  get(url: string, options: { responseType?: 'text'; }): Observable<any>;
+  get(url: string, options: { responseType?: 'text' }): Observable<any>;
   get<T>(url: string): Observable<T>;
   get<T>(url: string, options?: any) {
     return this.selectedId$.pipe(
       switchMap((id) => this.httpClient.get<T>(`${this.apiUrl}/api/docker/${id}${url}`, { ...options, reportProgress: false })),
-      first(),
+      first()
     );
   }
 

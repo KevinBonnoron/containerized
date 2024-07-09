@@ -9,7 +9,7 @@ interface DockerNetworkCreateEvent extends DockerNetworkBaseEvent {
     Attributes: {
       name: string;
       type: string;
-    }
+    };
   };
 }
 
@@ -20,7 +20,7 @@ interface DockerNetworkDestroyEvent extends DockerNetworkBaseEvent {
     Attributes: {
       name: string;
       type: string;
-    }
+    };
   };
 }
 
@@ -32,7 +32,7 @@ interface DockerNetworkConnectEvent extends DockerNetworkBaseEvent {
       container: string;
       name: string;
       type: 'bridge'; // TODO
-    }
+    };
   };
 }
 
@@ -44,16 +44,16 @@ interface DockerNetworkDisconnectEvent extends DockerNetworkBaseEvent {
       container: string;
       name: string;
       type: 'bridge'; // TODO
-    }
-  }
+    };
+  };
 }
 
 interface DockerNetworkPruneEvent extends DockerNetworkBaseEvent {
-  Action: 'prune',
+  Action: 'prune';
   Actor: {
     ID: string;
     Attributes: {
-      reclaimed: string
+      reclaimed: string;
     };
   };
 }

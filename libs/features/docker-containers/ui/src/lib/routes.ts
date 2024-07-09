@@ -6,26 +6,34 @@ import * as en from '../assets/i18n/en.json';
 import * as fr from '../assets/i18n/fr.json';
 import { DockerContainersCreateComponent, DockerContainersEditComponent, DockerContainersExecComponent, DockerContainersLogComponent } from './components';
 
-const providers = [
-  provideDockerVolumes(),
-  provideDockerContainers(),
-  provideChildTranslate({ fr, en }),
-];
+const providers = [provideDockerVolumes(), provideDockerContainers(), provideChildTranslate({ fr, en })];
 
-const canActivate = [
-  loadDockerContainersGuard,
-];
+const canActivate = [loadDockerContainersGuard];
 
 export const dockerContainersRoutes: Routes = [
-  { path: '', providers, canActivate, children: [
-    { path: 'view', loadComponent: () => import('./components').then((m) => m.DockerContainersViewComponent), data: { title: 'container.view.title' }, children: [
-      { path: 'create', loadComponent: () => import('./components').then((m) => m.DockerContainersDialogComponent), data: { title: 'container.create.title', dialogComponent: DockerContainersCreateComponent } },
-      { path: ':id', resolve: { dockerContainer: dockerContainerRouteResolver }, children: [
-        { path: 'log', loadComponent: () => import('./components').then((m) => m.DockerContainersDialogComponent), data: { title: 'container.log.title', dialogComponent: DockerContainersLogComponent } },
-        { path: 'edit', loadComponent: () => import('./components').then((m) => m.DockerContainersDialogComponent),  data: { title: 'container.edit.title', dialogComponent: DockerContainersEditComponent } },
-        { path: 'exec', loadComponent: () => import('./components').then((m) => m.DockerContainersDialogComponent),  data: { title: 'container.exec.title', dialogComponent: DockerContainersExecComponent } },
-      ] },
-    ] },  
-    { path: '', pathMatch: 'full', redirectTo: 'view' },
-  ] }
+  {
+    path: '',
+    providers,
+    canActivate,
+    children: [
+      {
+        path: 'view',
+        loadComponent: () => import('./components').then((m) => m.DockerContainersViewComponent),
+        data: { title: 'container.view.title' },
+        children: [
+          { path: 'create', loadComponent: () => import('./components').then((m) => m.DockerContainersDialogComponent), data: { title: 'container.create.title', dialogComponent: DockerContainersCreateComponent } },
+          {
+            path: ':id',
+            resolve: { dockerContainer: dockerContainerRouteResolver },
+            children: [
+              { path: 'log', loadComponent: () => import('./components').then((m) => m.DockerContainersDialogComponent), data: { title: 'container.log.title', dialogComponent: DockerContainersLogComponent } },
+              { path: 'edit', loadComponent: () => import('./components').then((m) => m.DockerContainersDialogComponent), data: { title: 'container.edit.title', dialogComponent: DockerContainersEditComponent } },
+              { path: 'exec', loadComponent: () => import('./components').then((m) => m.DockerContainersDialogComponent), data: { title: 'container.exec.title', dialogComponent: DockerContainersExecComponent } },
+            ],
+          },
+        ],
+      },
+      { path: '', pathMatch: 'full', redirectTo: 'view' },
+    ],
+  },
 ];

@@ -3,7 +3,7 @@ import type { ContainerInspectInfo, Port } from 'dockerode';
 import type { DockerContainerDto, DockerContainerEnvironment, DockerContainerPort, DockerContainerStatus, DockerContainerVolume } from '@containerized/shared';
 import { Mount } from '../types';
 
-const portBindingsToPort = (portBindings: Record<string, { HostIp: string, HostPort: string }[]>): Port[] => {
+const portBindingsToPort = (portBindings: Record<string, { HostIp: string; HostPort: string }[]>): Port[] => {
   return Object.entries(portBindings).map(([key, [value]]) => {
     const [PrivatePort, Type] = key.split('/');
 
@@ -11,7 +11,7 @@ const portBindingsToPort = (portBindings: Record<string, { HostIp: string, HostP
       PublicPort: parseInt(value.HostPort),
       PrivatePort: parseInt(PrivatePort),
       Type,
-      IP: value.HostIp
+      IP: value.HostIp,
     };
   });
 };
@@ -23,8 +23,8 @@ const DockerContainersPortAdapter = {
       container: port.PrivatePort,
       protocol: port.Type,
       ip: port.IP,
-    }
-  }
+    };
+  },
 };
 
 const DockerContainersVolumeAdapter = {
@@ -52,7 +52,7 @@ const DockerContainersVolumeAdapter = {
           source: mount.Source,
         };
     }
-  }
+  },
 };
 
 const DockerContainersEnvironmentAdapter = {
@@ -60,9 +60,9 @@ const DockerContainersEnvironmentAdapter = {
     const [key, value] = environment.split('=', 2);
     return {
       key,
-      value
+      value,
     };
-  }
+  },
 };
 
 export const DockerContainersAdapter = {
@@ -76,7 +76,7 @@ export const DockerContainersAdapter = {
       labels: Object.entries(containerInspectInfo.Config.Labels).map(([key, value]) => ({ key, value })),
       ports: portBindingsToPort(containerInspectInfo.HostConfig.PortBindings ?? {}).map(DockerContainersPortAdapter.toDto),
       volumes: containerInspectInfo.Mounts.map(DockerContainersVolumeAdapter.toDto),
-      environments: containerInspectInfo.Config.Env.map(DockerContainersEnvironmentAdapter.toDto)
-    }
-  }
+      environments: containerInspectInfo.Config.Env.map(DockerContainersEnvironmentAdapter.toDto),
+    };
+  },
 };

@@ -2,21 +2,9 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import localEn from '@angular/common/locales/en';
 import localeFr from '@angular/common/locales/fr';
-import {
-  ENVIRONMENT_INITIALIZER,
-  LOCALE_ID,
-  importProvidersFrom,
-  inject,
-  makeEnvironmentProviders
-} from '@angular/core';
-import type {
-  TranslateModuleConfig} from '@ngx-translate/core';
-import {
-  TranslateCompiler,
-  TranslateLoader,
-  TranslateModule,
-  TranslateService,
-} from '@ngx-translate/core';
+import { ENVIRONMENT_INITIALIZER, LOCALE_ID, importProvidersFrom, inject, makeEnvironmentProviders } from '@angular/core';
+import type { TranslateModuleConfig } from '@ngx-translate/core';
+import { TranslateCompiler, TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 
@@ -52,11 +40,12 @@ export const provideRootTranslate = () =>
     ),
   ]);
 
-export const provideChildTranslate = (files: Record<string, object>) => makeEnvironmentProviders([
-  importProvidersFrom(
-    TranslateModule.forChild({
-      ...commonTranslateModuleConfig,
-      loader: { provide: TranslateLoader, useFactory: () => new StaticFileTranslateLoader(files) },
-    })
-  )
-]);
+export const provideChildTranslate = (files: Record<string, object>) =>
+  makeEnvironmentProviders([
+    importProvidersFrom(
+      TranslateModule.forChild({
+        ...commonTranslateModuleConfig,
+        loader: { provide: TranslateLoader, useFactory: () => new StaticFileTranslateLoader(files) },
+      })
+    ),
+  ]);

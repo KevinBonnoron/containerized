@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { StyleManagerService } from '../style-manager/style-manager.service';
 
 type Themes = 'magenta-violet' | 'rose-red' | 'azure-blue' | 'cyan-orange';

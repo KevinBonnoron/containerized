@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'containerized-confirm-button',
   imports: [MatButtonModule, MatIconModule, NgStyle],
   templateUrl: './confirm-button.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfirmButtonComponent {
   private readonly elementRef = inject(ElementRef);

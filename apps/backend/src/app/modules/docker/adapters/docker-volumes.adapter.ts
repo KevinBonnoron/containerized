@@ -11,5 +11,5 @@ export const DockerVolumesAdapter = {
       mountPoint: volumeInfo.Mountpoint,
       scope: volumeInfo.Scope,
     };
-  }
-}
+  },
+};

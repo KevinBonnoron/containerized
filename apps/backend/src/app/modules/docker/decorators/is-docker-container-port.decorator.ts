@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
+import { ValidationArguments, ValidationOptions, registerDecorator } from 'class-validator';
 
 export function IsDockerContainerPort(validationOptions?: ValidationOptions) {
   return function (object: Object, propertyName: string) {

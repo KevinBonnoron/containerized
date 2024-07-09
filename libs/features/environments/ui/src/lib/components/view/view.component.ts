@@ -17,8 +17,8 @@ import { EnvironmentsViewTableComponent } from './table/table.component';
       components: [
         { component: EnvironmentsViewCardsComponent, name: 'cards' },
         { component: EnvironmentsViewTableComponent, name: 'table' },
-      ]
-    })
+      ],
+    }),
   ],
 })
 export class EnvironmentViewComponent {
