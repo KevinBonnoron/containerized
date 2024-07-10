@@ -1,0 +1,5 @@
+<div class="flex gap-2">
+  @for (button of buttons(); track button.value) {
+    <button mat-raised-button [ngClass]="{ selected: isSelected(button.value) }" (click)="toggleValue(button.value)">{{ button.label }}</button>
+  }
+</div>

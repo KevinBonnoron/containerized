@@ -1,6 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
-
-import { ThemeService } from '@containerized/ui';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import type { MenuItems } from '../../models';
 import { MenuItemComponent } from '../menu-item/menu-item.component';
 
@@ -12,11 +10,5 @@ import { MenuItemComponent } from '../menu-item/menu-item.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent {
-  private readonly themeService = inject(ThemeService);
-
   readonly menuItems = input.required<MenuItems>();
-
-  switchTheme() {
-    this.themeService.setTheme('rose-red');
-  }
 }

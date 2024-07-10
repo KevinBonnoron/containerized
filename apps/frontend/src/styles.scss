@@ -18,13 +18,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding-bottom: 8px !important;
 }
 
-.mat-mdc-form-field {
-  display: unset !important;
-}
-
 .mat-mdc-card-header *,
 .mat-mdc-chip * {
   text-overflow: ellipsis !important;
   overflow: hidden !important;
   white-space: nowrap !important;
+}
+
+.mat-mdc-card-title {
+  display: flex !important;
+  align-items: center;
 }

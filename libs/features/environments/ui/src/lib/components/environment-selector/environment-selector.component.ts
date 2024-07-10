@@ -11,6 +11,7 @@ import { EnvironmentDto } from '@containerized/shared';
   standalone: true,
   imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './environment-selector.component.html',
+  styleUrl: './environment-selector.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EnvironmentSelectorComponent implements OnInit {

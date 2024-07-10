@@ -18,6 +18,10 @@
       <mat-card-actions align="end">
         <div class="grow"></div>
 
+        <button mat-icon-button (click)="pullImage(dockerImage)">
+          <mat-icon>download-cloud-2-line</mat-icon>
+        </button>
+
         <containerized-confirm-button (confirmed)="removeImage(dockerImage)">
           <rmx-icon name="delete-bin-line" />
         </containerized-confirm-button>

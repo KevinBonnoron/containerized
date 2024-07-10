@@ -21,4 +21,8 @@ export class DockerImagesService extends DockerRemoteService {
   remove(dockerImage: DockerImageDto) {
     return this.delete<string>(`/images/${dockerImage.id}`);
   }
+
+  pull(image: string) {
+    return this.post('/images/pull', { image });
+  }
 }

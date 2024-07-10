@@ -5,7 +5,27 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideApiUrl, provideRootTranslate, provideSocketIO } from '@containerized/ui';
-import { RiCalendarEventLine, RiCalendarLine, RiDashboard2Line, RiDatabase2Line, RiDeleteBinLine, RiFileTextLine, RiGitRepositoryLine, RiHomeLine, RiImage2Line, RiInstanceLine, RiLayoutGridLine, RiSettingsLine, RiShareLine, RiTableLine, RiTerminalBoxLine, RiTerminalLine, provideRemixIcon } from 'angular-remix-icon';
+import {
+  RiCalendarEventLine,
+  RiCalendarLine,
+  RiDashboard2Line,
+  RiDatabase2Line,
+  RiDeleteBinLine,
+  RiDownloadCloud2Line,
+  RiFileTextLine,
+  RiFilter3Line,
+  RiGitRepositoryLine,
+  RiHomeLine,
+  RiImage2Line,
+  RiInstanceLine,
+  RiLayoutGridLine,
+  RiSettingsLine,
+  RiShareLine,
+  RiTableLine,
+  RiTerminalBoxLine,
+  RiTerminalLine,
+  provideRemixIcon,
+} from 'angular-remix-icon';
 import { environment } from '../environments/environment';
 import { appRoutes } from './app.routes';
 
@@ -39,6 +59,8 @@ export const appConfig: ApplicationConfig = {
       RiFileTextLine,
       RiSettingsLine,
       RiGitRepositoryLine,
+      RiFilter3Line,
+      RiDownloadCloud2Line,
     }),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

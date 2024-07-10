@@ -1,0 +1,35 @@
+<div class="flex pb-4 gap-4 items-center">
+  <div>
+    @if (layout() === 'table') {
+      <button mat-icon-button (click)="setLayout('cards')">
+        <rmx-icon name="layout-grid-line" />
+      </button>
+    }
+  
+    @if (layout() === 'cards') {
+      <button mat-icon-button (click)="setLayout('table')">
+        <rmx-icon name="table-line" />
+      </button>
+    }
+  </div>
+
+  <div>
+    @if (someOrAllSelected()) {
+      <button mat-icon-button (click)="pullImages()">
+        <mat-icon>download-cloud-2-line</mat-icon>
+      </button>
+
+      <containerized-confirm-button (confirmed)="removeImages()">
+        <rmx-icon name="delete-bin-line" />
+      </containerized-confirm-button>
+    }
+  </div>
+
+  <div class="grow flex justify-end">
+    <containerized-data-layout-filters [filters]="filters" />
+  </div>
+
+  <button mat-flat-button routerLink="./create">+ Pull</button>
+</div>
+
+<ngx-data-layout-content />

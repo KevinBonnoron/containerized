@@ -9570,10 +9570,10 @@ ngrx-store-localstorage@^18.0.0:
     deepmerge "^4.2.2"
     tslib "^2.3.0"
 
-ngx-data-layout@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/ngx-data-layout/-/ngx-data-layout-1.2.0.tgz#d209042df20e1a8fa2ac1fba2060d7aaee71123a"
-  integrity sha512-W73SvoTk9TnVSGFAsHmU74/zJtEfjreSrasidGTidFISgk19vZsVL48zltpUrsdKP55Dqz1sLU0RlKc7f0WxDQ==
+ngx-data-layout@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/ngx-data-layout/-/ngx-data-layout-1.3.0.tgz#dfda40fd7b57f7c266cfeea6ca98df5b676c84a9"
+  integrity sha512-XpG+ru27l17H2TsTHFc7eEHA6jvPXDUv0vsTo2UYqFjbqbpSEy7V+y1nC/YgPrAODs74B0hc2KuzmwOioWXYXg==
   dependencies:
     tslib "^2.3.0"
 

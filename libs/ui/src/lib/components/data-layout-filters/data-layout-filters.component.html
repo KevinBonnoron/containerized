@@ -1,0 +1,26 @@
+<form [formGroup]="formGroup()" class="flex gap-2 items-center">
+  @for (filter of filters(); track filter) {
+    @switch (filter.type) {
+      @case ('select') {
+        @if (filter.values.length <= 3) {
+          <containerized-toggle-button [formControlName]="filter.name" [buttons]="filter.values" [multiple]="filter.multiple ?? false" />
+        } @else {
+          <mat-form-field>
+            <mat-label>{{ filter.name }}</mat-label>
+            <mat-select [formControlName]="filter.name" [multiple]="filter.multiple ?? false">
+              @for (option of filter.values; track option) {
+                <mat-option [value]="option.value">{{ option.label }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        }
+      }
+      @case ('text') {
+        <mat-form-field>
+          <mat-label>{{ filter.name }}</mat-label>
+          <input matInput [formControlName]="filter.name" />
+        </mat-form-field>
+      }
+    }
+  }
+</form>

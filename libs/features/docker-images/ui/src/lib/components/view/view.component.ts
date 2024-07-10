@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
 import { DockerImagesStore } from '@containerized/features/docker-images/data-access';
-import { NgxDataLayoutWrapperComponent } from '@containerized/ui';
 import { NgxDataLayoutComponent, provideDataLayout } from 'ngx-data-layout';
 import { DockerImagesViewCardsComponent } from './cards/cards.component';
 import { DockerImagesViewTableComponent } from './table/table.component';
+import { DockerImagesViewWrapperComponent } from './wrapper/wrapper.component';
 
 @Component({
   standalone: true,
@@ -12,10 +12,10 @@ import { DockerImagesViewTableComponent } from './table/table.component';
   templateUrl: './view.component.html',
   providers: [
     provideDataLayout({
-      wrapper: NgxDataLayoutWrapperComponent,
+      wrapper: DockerImagesViewWrapperComponent,
       components: [
-        { component: DockerImagesViewCardsComponent, name: 'cards' },
         { component: DockerImagesViewTableComponent, name: 'table' },
+        { component: DockerImagesViewCardsComponent, name: 'cards' },
       ],
     }),
   ],

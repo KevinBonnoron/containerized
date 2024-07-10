@@ -15,8 +15,8 @@ import { DockerEventsViewTableComponent } from './table/table.component';
     provideDataLayout({
       wrapper: NgxDataLayoutWrapperComponent,
       components: [
-        { component: DockerEventsViewCardsComponent, name: 'cards' },
         { component: DockerEventsViewTableComponent, name: 'table' },
+        { component: DockerEventsViewCardsComponent, name: 'cards' },
       ],
     }),
   ],

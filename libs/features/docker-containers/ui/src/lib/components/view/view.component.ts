@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DockerContainersStore } from '@containerized/features/docker-containers/data-access';
-import { NgxDataLayoutWrapperComponent } from '@containerized/ui';
 import { NgxDataLayoutComponent, provideDataLayout } from 'ngx-data-layout';
 import { DockerContainersViewCardsComponent } from './cards/cards.component';
 import { DockerContainersViewTableComponent } from './table/table.component';
+import { DockerContainersViewWrapperComponent } from './wrapper/wrapper.component';
 
 @Component({
   selector: 'containerized-docker-containers-view',
@@ -13,17 +13,17 @@ import { DockerContainersViewTableComponent } from './table/table.component';
   templateUrl: './view.component.html',
   providers: [
     provideDataLayout({
-      wrapper: NgxDataLayoutWrapperComponent,
+      wrapper: DockerContainersViewWrapperComponent,
       components: [
-        { component: DockerContainersViewCardsComponent, name: 'cards' },
         { component: DockerContainersViewTableComponent, name: 'table' },
+        { component: DockerContainersViewCardsComponent, name: 'cards' },
       ],
     }),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DockerContainersViewComponent {
-  protected readonly dockerContainerStore = inject(DockerContainersStore);
+  private readonly dockerContainerStore = inject(DockerContainersStore);
 
   readonly dockerContainers = this.dockerContainerStore.entities;
 }

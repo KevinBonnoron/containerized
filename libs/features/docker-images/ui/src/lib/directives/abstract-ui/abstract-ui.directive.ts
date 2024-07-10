@@ -10,6 +10,10 @@ import { DataLayoutComponent } from 'ngx-data-layout';
 export abstract class AbstractUiDirective extends DataLayoutComponent<DockerImageDto> {
   private readonly dockerImagesStore = inject(DockerImagesStore);
 
+  pullImage(dockerImage: DockerImageDto) {
+    this.dockerImagesStore.pull(dockerImage.tags[0]);
+  }
+
   imageLabels(dockerImage: DockerImageDto) {
     return [...entriesOf(dockerImage.labels)].map(([key, value]) => `${key}=${value}`);
   }

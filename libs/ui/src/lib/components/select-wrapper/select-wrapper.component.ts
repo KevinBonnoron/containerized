@@ -18,6 +18,7 @@ interface Value {
 })
 export class SelectWrapperComponent implements ControlValueAccessor {
   readonly values = input.required<Value[]>();
+
   readonly formControl = new FormControl();
 
   disabled = false;

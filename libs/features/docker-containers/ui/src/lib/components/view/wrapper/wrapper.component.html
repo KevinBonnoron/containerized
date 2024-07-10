@@ -1,0 +1,44 @@
+<div class="flex pb-4 gap-4 items-center">
+  <div>
+    @if (layout() === 'table') {
+      <button mat-icon-button (click)="setLayout('cards')">
+        <rmx-icon name="layout-grid-line" />
+      </button>
+    }
+  
+    @if (layout() === 'cards') {
+      <button mat-icon-button (click)="setLayout('table')">
+        <rmx-icon name="table-line" />
+      </button>
+    }
+  </div>
+
+  @if (someOrAllSelected()) {
+    <div>
+      @if (selectionCreated() || selectionExited()) {
+        <button mat-icon-button (click)="startContainers()">
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+      } @else if (selectionRunning()) {
+        <button mat-icon-button (click)="restartContainers()">
+          <mat-icon>sync</mat-icon>
+        </button>
+        <button mat-icon-button (click)="stopContainers()">
+          <mat-icon>stop</mat-icon>
+        </button>
+      }
+
+      <containerized-confirm-button (confirmed)="removeContainers()">
+        <rmx-icon name="delete-bin-line" />
+      </containerized-confirm-button>
+    </div>
+  }
+
+  <div class="grow flex justify-end">
+    <containerized-data-layout-filters [filters]="filters" />
+  </div>
+
+  <button mat-flat-button routerLink="./create">+ Create</button>
+</div>
+
+<ngx-data-layout-content />

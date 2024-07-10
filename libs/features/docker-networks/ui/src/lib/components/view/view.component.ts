@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DockerNetworksStore } from '@containerized/features/docker-networks/data-access';
-import { NgxDataLayoutWrapperComponent } from '@containerized/ui';
 import { NgxDataLayoutComponent, provideDataLayout } from 'ngx-data-layout';
 import { DockerNetworksCardsComponent } from './cards/cards.component';
 import { DockerNetworksTableComponent } from './table/table.component';
+import { DockerNetworksViewWrapperComponent } from './wrapper/wrapper.component';
 
 @Component({
   selector: 'containerized-docker-networks-view',
@@ -13,10 +13,10 @@ import { DockerNetworksTableComponent } from './table/table.component';
   templateUrl: './view.component.html',
   providers: [
     provideDataLayout({
-      wrapper: NgxDataLayoutWrapperComponent,
+      wrapper: DockerNetworksViewWrapperComponent,
       components: [
-        { component: DockerNetworksCardsComponent, name: 'cards' },
         { component: DockerNetworksTableComponent, name: 'table' },
+        { component: DockerNetworksCardsComponent, name: 'cards' },
       ],
     }),
   ],

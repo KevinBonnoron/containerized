@@ -14,26 +14,20 @@
     <td mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="labels">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Labels</th>
-    <td mat-cell *matCellDef="let element">{{ element.labels }}</td>
-  </ng-container>
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="flex items-center">
+        <button mat-icon-button (click)="editVolume(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
 
-  <ng-container matColumnDef="driver">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Driver</th>
-    <td mat-cell *matCellDef="let element">{{ element.driver }}</td>
+        <containerized-confirm-button (confirmed)="removeVolume(element)">
+          <rmx-icon name="delete-bin-line" />
+        </containerized-confirm-button>
+      </div>
+    </td>
   </ng-container>
-
-  <ng-container matColumnDef="mountPoint">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Mount point</th>
-    <td mat-cell *matCellDef="let element">{{ element.mountPoint }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="scope">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Scope</th>
-    <td mat-cell *matCellDef="let element">{{ element.scope }}</td>
-  </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

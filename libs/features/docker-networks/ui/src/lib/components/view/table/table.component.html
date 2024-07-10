@@ -5,18 +5,15 @@
     </th>
 
     <td mat-cell *matCellDef="let row">
-      <mat-checkbox [checked]="isSelected(row)" (change)="toggle(row)" />
+      @if (!row.system) {
+        <mat-checkbox [checked]="isSelected(row)" (change)="toggle(row)" />
+      }
     </td>
   </ng-container>
 
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
     <td mat-cell *matCellDef="let element">{{ element.name }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
   </ng-container>
 
   <ng-container matColumnDef="scope">
@@ -32,6 +29,19 @@
   <ng-container matColumnDef="enableIPv6">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Enable IPv6</th>
     <td mat-cell *matCellDef="let element">{{ element.enableIPv6 }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="flex items-center">
+        @if (!element.system) {
+          <containerized-confirm-button (confirmed)="removeNetwork(element)">
+            <rmx-icon name="delete-bin-line" />
+          </containerized-confirm-button>
+        }
+      </div>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
