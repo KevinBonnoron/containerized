@@ -6,9 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DockerContainerDto, DockerContainerEnvironment, DockerContainerLabel, DockerContainerPort, DockerContainerVolume, DockerRunCommand } from '@containerized/shared';
+import { KeyValueEditorComponent } from '@containerized/ui';
 import { AngularRemixIconComponent } from 'angular-remix-icon';
 import { DockerCommandParserDialogComponent } from './docker-command-parser-dialog/docker-command-parser-dialog.component';
-import { DockerContainersFormEnvironmentComponent } from './form-environment/form-environment.component';
 import { DockerContainersFormLabelComponent } from './form-label/form-label.component';
 import { DockerContainersFormPortComponent } from './form-port/form-port.component';
 import { DockerContainersFormVolumeComponent } from './form-volume/form-volume.component';
@@ -16,7 +16,7 @@ import { DockerContainersFormVolumeComponent } from './form-volume/form-volume.c
 @Component({
   selector: 'containerized-docker-containers-form',
   standalone: true,
-  imports: [AngularRemixIconComponent, DockerContainersFormEnvironmentComponent, DockerContainersFormLabelComponent, DockerContainersFormPortComponent, DockerContainersFormVolumeComponent, MatButtonModule, MatFormFieldModule, MatInputModule, MatTabsModule, ReactiveFormsModule],
+  imports: [AngularRemixIconComponent, DockerContainersFormLabelComponent, DockerContainersFormPortComponent, DockerContainersFormVolumeComponent, KeyValueEditorComponent, MatButtonModule, MatFormFieldModule, MatInputModule, MatTabsModule, ReactiveFormsModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

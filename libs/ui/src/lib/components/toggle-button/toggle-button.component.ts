@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
-import { Component, input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { DefaultControlValueAccessor } from '../../directives';
 
 interface Button {
   label: string;
@@ -14,18 +14,11 @@ interface Button {
   imports: [MatButtonModule, NgClass],
   templateUrl: './toggle-button.component.html',
   styleUrl: './toggle-button.component.scss',
-  providers: [{ provide: NG_VALUE_ACCESSOR, multi: true, useExisting: ToggleButtonComponent }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ToggleButtonComponent implements ControlValueAccessor {
+export class ToggleButtonComponent extends DefaultControlValueAccessor<any> {
   readonly buttons = input.required<Button[]>();
   readonly multiple = input(false, { transform: (value) => !!value });
-
-  value: any;
-
-  disabled = false;
-  touched = false;
-  onChange = (value: any) => {};
-  onTouched = () => {};
 
   toggleValue(value: any) {
     if (this.multiple()) {
@@ -38,22 +31,6 @@ export class ToggleButtonComponent implements ControlValueAccessor {
     this.markAsTouched();
   }
 
-  writeValue(obj: any) {
-    this.value = obj;
-  }
-
-  registerOnChange(onChange: any) {
-    this.onChange = onChange;
-  }
-
-  registerOnTouched(onTouched: any) {
-    this.onTouched = onTouched;
-  }
-
-  setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
-  }
-
   isSelected(value: any) {
     if (this.value === undefined) {
       return false;
@@ -63,13 +40,6 @@ export class ToggleButtonComponent implements ControlValueAccessor {
       return this.value.includes(value);
     } else {
       return value === this.value;
-    }
-  }
-
-  private markAsTouched() {
-    if (!this.touched) {
-      this.onTouched();
-      this.touched = true;
     }
   }
 }

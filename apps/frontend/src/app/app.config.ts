@@ -26,6 +26,7 @@ import {
   RiTerminalLine,
   provideRemixIcon,
 } from 'angular-remix-icon';
+import { provideMonacoEditor } from 'ngx-monaco-editor-v2';
 import { environment } from '../environments/environment';
 import { appRoutes } from './app.routes';
 
@@ -62,6 +63,7 @@ export const appConfig: ApplicationConfig = {
       RiFilter3Line,
       RiDownloadCloud2Line,
     }),
+    provideMonacoEditor(),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {
